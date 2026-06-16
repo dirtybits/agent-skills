@@ -1,0 +1,13 @@
+{
+  "name": "agent-skills",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-skills.mjs",
+    "publish:dry-run": "node scripts/publish-agentvouch.mjs",
+    "publish": "node scripts/publish-agentvouch.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": "2026-06-16",
+  "agentvouch_author_wallet": "asuavUDGmrVHr4oD1b4QtnnXgtnEcBa8qdkfZz7WZgw",
+  "skills": [
+    {
+      "name": "financial-analysis",
+      "path": "skills/financial-analysis",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["finance", "analysis", "spreadsheets"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "4915b468-8d5e-4f9f-97d4-b4a80f421ccc",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/financial-analysis"
+      }
+    },
+    {
+      "name": "find-skills",
+      "path": "skills/find-skills",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["skills", "discovery", "workflow"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "b893dde9-691c-474b-a134-8b983dbebd37",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/find-skills"
+      }
+    },
+    {
+      "name": "fix-bugbot-pr-comments",
+      "path": "skills/fix-bugbot-pr-comments",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["github", "code-review", "workflow"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "8969aa89-981e-40dd-8f40-bbec454617d1",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/fix-bugbot-pr-comments"
+      }
+    },
+    {
+      "name": "frontend-design",
+      "path": "skills/frontend-design",
+      "origin": "authored",
+      "license": "see skills/frontend-design/LICENSE.txt",
+      "tags": ["frontend", "design", "ui"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "47292702-865c-4b3b-ad6b-919264ec7ec3",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/frontend-design"
+      }
+    },
+    {
+      "name": "plan-writing",
+      "path": "skills/plan-writing",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["planning", "documentation", "project-management"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "56ec4087-a03c-4d92-b851-b9e57526325a",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/plan-writing"
+      }
+    },
+    {
+      "name": "skills-organization",
+      "path": "skills/skills-organization",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["skills", "organization", "workflow"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "928e765a-56f5-4f60-80c0-f5ae55207a14",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/skills-organization"
+      }
+    },
+    {
+      "name": "subagent-orchestration",
+      "path": "skills/subagent-orchestration",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["agents", "orchestration", "workflow", "prompting"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "ff3f728a-313e-46ba-80cd-a1a331327967",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/subagent-orchestration"
+      }
+    },
+    {
+      "name": "turn-closeout",
+      "path": "skills/turn-closeout",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["codex", "workflow", "communication"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "c02c5021-98d6-4379-9ce0-f5e4216a6b8a",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/turn-closeout"
+      }
+    },
+    {
+      "name": "web3-protocol-design",
+      "path": "skills/web3-protocol-design",
+      "origin": "authored",
+      "license": "all-rights-reserved",
+      "tags": ["web3", "protocol-design", "tokenomics", "governance", "threat-modeling"],
+      "publish_decision": "already-published",
+      "agentvouch": {
+        "repo_skill_id": "71a463dc-4071-452d-880f-f00738e0bee8",
+        "url": "https://agentvouch.xyz/skills/wallet-asuavudg/web3-protocol-design"
+      }
+    }
+  ]
+}

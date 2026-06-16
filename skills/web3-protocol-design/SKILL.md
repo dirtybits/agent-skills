@@ -1,0 +1,103 @@
+---
+name: web3-protocol-design
+description: Designs and reviews web3 protocols, incentive systems, token flows, governance, payments, disputes, launch specs, and threat models. Use when planning or reviewing on-chain products, DeFi mechanisms, staking or slashing models, marketplaces, DAOs, bridges, or oracle-dependent systems.
+---
+
+# Web3 Protocol Design
+
+## When To Use
+
+Use this skill when the task involves:
+
+- designing a new web3 protocol or protocol feature
+- reviewing tokenomics, fees, staking, rewards, slashing, or dispute flows
+- specifying smart contract state, permissions, or account models
+- choosing on-chain, off-chain, oracle, bridge, or keeper boundaries
+- preparing a protocol spec, audit brief, test plan, or launch checklist
+
+## Design Workflow
+
+1. Define the protocol goal in one sentence, then list explicit non-goals.
+2. Identify actors, assets, chains, contracts, off-chain services, and external dependencies.
+3. Map the lifecycle as state transitions: initialization, normal use, settlement, recovery, upgrade, and shutdown.
+4. Specify trust assumptions for admins, signers, sequencers, bridges, oracles, keepers, governance, and users.
+5. Design incentives with concrete flows: who pays, who receives, when funds move, what can be slashed, and what can be extracted.
+6. Write invariants before implementation details. Treat every invariant as a future test or monitor.
+7. Threat-model the design against economic, technical, governance, liquidity, oracle, and UX failures.
+8. Define launch gates: tests, simulations, audits, monitoring, limits, emergency controls, and rollout stages.
+
+## Protocol Spec Template
+
+Use this structure unless the user asks for another format:
+
+```markdown
+# Protocol Spec: [Name]
+
+## Goal
+[One sentence.]
+
+## Non-Goals
+- [Non-goal.]
+
+## Actors
+- [Actor]: [permissions, incentives, risks.]
+
+## Assets And Units
+- [Asset]: [decimals, custody location, transfer constraints.]
+
+## State Model
+- [State/account/contract]: [owner, fields, authority, lifecycle.]
+
+## Flows
+1. [Flow name]: [preconditions, steps, postconditions, failure cases.]
+
+## Incentives
+- Fees:
+- Rewards:
+- Penalties:
+- Slashing:
+- MEV/extraction risk:
+
+## Trust Assumptions
+- Admin:
+- Oracle:
+- Bridge:
+- Keeper:
+- Governance:
+
+## Invariants
+- [Invariant that must always hold.]
+
+## Threat Model
+- [Threat]: [impact, likelihood, mitigation, residual risk.]
+
+## Test Plan
+- Unit:
+- Integration:
+- Simulation:
+- Adversarial:
+
+## Launch Checklist
+- [Gate.]
+```
+
+## Review Checklist
+
+Check these before calling a design ready:
+
+- The protocol has a clear asset custody model and no ambiguous owner of funds.
+- Every privileged action has an authority, delay, scope limit, and monitoring plan.
+- Fees, rewards, and slashing are denominated in exact units and rounding behavior is specified.
+- Oracle, bridge, and keeper failures have explicit stale-data and liveness behavior.
+- User deposits, withdrawals, refunds, disputes, and cancellations have bounded failure paths.
+- Incentives still work when volume is low, rewards are exhausted, liquidity is thin, or a rational actor griefs the system.
+- Upgrade and emergency controls cannot silently change user claims without a visible process.
+- Invariants are testable and include conservation of value, authorization, accounting, and replay protection.
+
+## Output Guidance
+
+- Lead with the recommendation or design decision.
+- Separate facts, assumptions, open questions, and risks.
+- Prefer concrete numbers and state transitions over broad claims.
+- Mark unfinished mechanisms as `WIP` and list the missing proof, test, or decision.
+- When reviewing an existing design, prioritize correctness risks before improvements.

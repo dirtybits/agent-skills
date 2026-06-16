@@ -1,0 +1,16 @@
+name: publish-dry-run
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  publish-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm run validate
+      - run: echo "AgentVouch publish dry-run requires the parent monorepo CLI or a packaged CLI binary."
