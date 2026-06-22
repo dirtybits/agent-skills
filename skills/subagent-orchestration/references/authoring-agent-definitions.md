@@ -1,3 +1,12 @@
+---
+type: Reference
+title: "Subagent Orchestration Authoring Agent Definitions"
+description: "Reference material for the Subagent Orchestration skill."
+resource: "https://github.com/dirtybits/agent-skills/blob/main/skills/subagent-orchestration/references/authoring-agent-definitions.md"
+tags: ["agents", "orchestration", "workflow", "prompting", "reference"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+---
 # Authoring reusable agent definitions
 
 A one-off prompt spawns a sub-agent *now*. An **agent definition** is a saved,

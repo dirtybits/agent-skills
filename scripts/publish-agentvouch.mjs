@@ -18,16 +18,29 @@ if (!keypair) {
   process.exit(1);
 }
 
-function descriptionFor(skillPath) {
+function frontmatterValue(skillPath, key) {
   const text = fs.readFileSync(path.join(skillPath, "SKILL.md"), "utf8");
   const match = text.match(/^---\n([\s\S]*?)\n---/);
-  const frontmatter = match?.[1] ?? "";
-  const line = frontmatter
-    .split(/\n/)
-    .find((candidate) => candidate.trim().startsWith("description:"));
-  return (line?.slice(line.indexOf(":") + 1).trim() || "")
-    .replace(/^["']|["']$/g, "")
-    .slice(0, 240);
+  const lines = match?.[1]?.split(/\n/) ?? [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const trimmed = lines[i].trim();
+    if (!trimmed.startsWith(`${key}:`)) continue;
+    let value = trimmed.slice(trimmed.indexOf(":") + 1).trim();
+    if (value === ">-" || value === "|" || value === ">") {
+      const folded = [];
+      for (let j = i + 1; j < lines.length; j += 1) {
+        if (!/^\s+/.test(lines[j])) break;
+        folded.push(lines[j].trim());
+      }
+      value = folded.join(" ");
+    }
+    return value.replace(/^["']|["']$/g, "");
+  }
+  return "";
+}
+
+function descriptionFor(skillPath) {
+  return frontmatterValue(skillPath, "description").slice(0, 240);
 }
 
 for (const entry of registry.skills ?? []) {

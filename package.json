@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-skills.mjs",
+    "kb:format": "node scripts/apply-okf-conventions.mjs",
     "publish:dry-run": "node scripts/publish-agentvouch.mjs",
     "publish": "node scripts/publish-agentvouch.mjs"
   },

@@ -1,3 +1,12 @@
+---
+type: Reference
+title: "Ethereum Development GUIDE"
+description: "Reference material for the Ethereum Development skill."
+resource: "https://github.com/dirtybits/agent-skills/blob/main/skills/ethereum-development/references/GUIDE.md"
+tags: ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp", "reference"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+---
 # Ethereum Development Guide
 
 This reference expands the `ethereum-development` skill with practical checklists and command recipes.

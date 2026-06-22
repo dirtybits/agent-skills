@@ -1,3 +1,12 @@
+---
+type: Reference
+title: "Financial Analysis Reference"
+description: "Reference material for the Financial Analysis skill."
+resource: "https://github.com/dirtybits/agent-skills/blob/main/skills/financial-analysis/reference.md"
+tags: ["finance", "analysis", "spreadsheets", "reference"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+---
 # Financial Analysis Reference
 
 ## Common Financial Ratios

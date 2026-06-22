@@ -1,8 +1,14 @@
 ---
+type: Skill
 name: find-skills
+title: "Find Skills"
 description: Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/find-skills"
+tags: ["skills", "discovery", "workflow"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Find Skills
 
 This skill helps you discover and install skills from the open agent skills ecosystem.

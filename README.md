@@ -34,6 +34,16 @@ scripts/
 npm run validate
 ```
 
+The validator now includes OKF-style knowledge-base checks: concept frontmatter, reserved `index.md` / `log.md` files, internal links, and registry consistency.
+
+## Format KB Metadata And Indexes
+
+```bash
+npm run kb:format
+```
+
+This applies the repo's OKF-inspired conventions to skill/reference frontmatter and regenerates indexes.
+
 ## Publish Dry Run
 
 ```bash

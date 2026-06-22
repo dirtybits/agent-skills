@@ -1,19 +1,14 @@
 ---
+type: Skill
 name: subagent-orchestration
-description: >-
-  Best practices for delegating work to sub-agents — when to spawn one vs. work
-  inline, how to write self-contained prompts, orchestration patterns (fan-out,
-  pipeline, adversarial verification, judge panels), and how to author reusable
-  agent-type definitions. Use this whenever a task involves searching or reading
-  across many files, running independent work that could go in parallel,
-  designing a multi-step or multi-agent workflow, deciding whether to delegate a
-  sub-task, or writing a sub-agent / agent-type definition or system prompt —
-  including phrasings like "spawn agents", "fan out", "orchestrate",
-  "parallelize this", "delegate to a subagent", "use multiple agents", or
-  "should I use a sub-agent here". Consult it before doing a broad multi-file
-  sweep inline, since delegating is often the better move.
+title: "Subagent Orchestration"
+description: "Best practices for delegating work to sub-agents — when to spawn one vs. work inline, how to write self-contained prompts, orchestration patterns, and how to author reusable agent-type definitions."
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/subagent-orchestration"
+tags: ["agents", "orchestration", "workflow", "prompting"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Sub-agent Orchestration
 
 A sub-agent is a fresh context window with its own tools that does one scoped

@@ -1,8 +1,14 @@
 ---
+type: Skill
 name: skills-organization
+title: "Skills Organization"
 description: Organize and synchronize local agent skill directories across Codex, Claude, Cursor, Hermes, OpenClaw, and other agent tools. Use when the user asks to audit, mirror, link, migrate, or reconcile skill folders such as ~/.agents/skills, ~/.codex/skills, ~/.claude/skills, ~/.cursor/skills, ~/.hermes/skills, ~/.openclaw/skills, or tool-specific skill directories.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/skills-organization"
+tags: ["skills", "organization", "workflow"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Skills Organization
 
 Use this skill when keeping local agent skill folders aligned across tools. Treat it as a power-user local workflow: audit first, explain the isolation tradeoffs, then make writes only after the user approves the exact paths.

@@ -1,3 +1,12 @@
+---
+type: Reference
+title: "Subagent Orchestration Writing Subagent Prompts"
+description: "Reference material for the Subagent Orchestration skill."
+resource: "https://github.com/dirtybits/agent-skills/blob/main/skills/subagent-orchestration/references/writing-subagent-prompts.md"
+tags: ["agents", "orchestration", "workflow", "prompting", "reference"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+---
 # Writing sub-agent prompts
 
 A sub-agent starts with a blank context. It cannot see this conversation, the

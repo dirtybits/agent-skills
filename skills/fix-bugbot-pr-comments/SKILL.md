@@ -1,8 +1,14 @@
 ---
+type: Skill
 name: fix-bugbot-pr-comments
+title: "Fix Bugbot Pr Comments"
 description: Fetch, triage, and fix unresolved Cursor Bugbot or automated PR review comments. Use when the user asks to fix Bugbot findings, babysit a PR, resolve automated review comments, or make a pull request merge-ready.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/fix-bugbot-pr-comments"
+tags: ["github", "code-review", "workflow"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Fix Bugbot PR Comments
 
 Use this workflow to make a PR merge-ready after Cursor Bugbot or other automated review comments appear.

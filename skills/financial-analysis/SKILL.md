@@ -1,8 +1,14 @@
 ---
+type: Skill
 name: financial-analysis
+title: "Financial Analysis"
 description: Guides and best practices for working with financial documents, building financial models, wrangling CSV data, and structuring Jupyter notebooks. Use when the user is building DCF models, LBO models, comparable analysis, analyzing financial data in CSVs, creating charts/visualizations of financial data, or structuring Jupyter notebooks for financial analysis.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/financial-analysis"
+tags: ["finance", "analysis", "spreadsheets"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Financial Analysis
 
 ## Core Stack

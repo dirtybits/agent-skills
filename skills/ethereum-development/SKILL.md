@@ -1,6 +1,12 @@
 ---
+type: Skill
 name: ethereum-development
+title: "Ethereum Development"
 description: Production-grade Ethereum/EVM development workflow for smart contracts, dApps, transactions, clients, gas optimization, testing, security review, deployment, verification, monitoring, and incident response across Foundry, Hardhat, Solidity, TypeScript, viem, ethers, wagmi, and common EVM networks.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/ethereum-development"
+tags: ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp", "viem", "ethers", "wagmi", "gas", "deployment"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
 version: "2.0.0"
 license: MIT
 sasmp_version: "1.3.0"
@@ -29,7 +35,6 @@ metadata:
   tags: [ethereum, evm, solidity, smart-contracts, foundry, hardhat, viem, ethers, wagmi, security, gas, deployment]
   related_skills: [web3-protocol-design]
 ---
-
 # Ethereum Development
 
 ## Purpose

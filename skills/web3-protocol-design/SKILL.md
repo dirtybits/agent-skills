@@ -1,8 +1,14 @@
 ---
+type: Skill
 name: web3-protocol-design
+title: "Web3 Protocol Design"
 description: Designs and reviews web3 protocols, incentive systems, token flows, governance, payments, disputes, launch specs, and threat models. Use when planning or reviewing on-chain products, DeFi mechanisms, staking or slashing models, marketplaces, DAOs, bridges, or oracle-dependent systems.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/web3-protocol-design"
+tags: ["web3", "protocol-design", "tokenomics", "governance", "threat-modeling"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Web3 Protocol Design
 
 ## When To Use

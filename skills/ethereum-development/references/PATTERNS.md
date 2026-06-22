@@ -1,3 +1,12 @@
+---
+type: Reference
+title: "Ethereum Development PATTERNS"
+description: "Reference material for the Ethereum Development skill."
+resource: "https://github.com/dirtybits/agent-skills/blob/main/skills/ethereum-development/references/PATTERNS.md"
+tags: ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp", "reference"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+---
 # Ethereum Development Patterns
 
 ## Pattern: Contract Change With Tests

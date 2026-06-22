@@ -1,8 +1,14 @@
 ---
+type: Skill
 name: plan-writing
+title: "Plan Writing"
 description: Write, review, and maintain implementation-ready .plan.md files with YAML frontmatter, actionable TODO lists, concrete execution details, verification gates, and rollback notes. Use when creating, splitting, reviewing, or updating plan files, especially files under .agents/plans or .cursor/plans — and also whenever implementing or executing work from an existing .plan.md, so todo statuses and the plan body stay current as steps complete.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/plan-writing"
+tags: ["planning", "documentation", "project-management"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Plan Writing
 
 ## Instructions

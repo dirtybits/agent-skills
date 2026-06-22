@@ -1,3 +1,12 @@
+---
+type: Reference
+title: "Subagent Orchestration Orchestration Patterns"
+description: "Reference material for the Subagent Orchestration skill."
+resource: "https://github.com/dirtybits/agent-skills/blob/main/skills/subagent-orchestration/references/orchestration-patterns.md"
+tags: ["agents", "orchestration", "workflow", "prompting", "reference"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+---
 # Orchestration patterns
 
 Composable shapes for coordinating sub-agents. Each entry: what it is, when to

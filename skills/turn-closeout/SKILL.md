@@ -1,8 +1,14 @@
 ---
+type: Skill
 name: turn-closeout
+title: "Turn Closeout"
 description: End substantial Codex turns with a concise outcome, concrete verification status, numbered recommended next steps, and an explicit prompt asking whether to proceed with one of those options. Use when wrapping up implementation work, debugging, research, planning, reviews, publishing flows, or other non-trivial tasks where the user may want Codex to continue with recommended follow-up actions.
+resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/turn-closeout"
+tags: ["codex", "workflow", "communication"]
+timestamp: "2026-06-22T19:13:38Z"
+okf_version: "0.1"
+license: "all-rights-reserved"
 ---
-
 # Turn Closeout
 
 Use this skill to make final responses feel complete but still alive with momentum. The closeout should tell the user what happened, how it was verified, and what Codex recommends doing next.
