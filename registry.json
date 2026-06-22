@@ -109,6 +109,14 @@
         "repo_skill_id": "71a463dc-4071-452d-880f-f00738e0bee8",
         "url": "https://agentvouch.xyz/skills/wallet-asuavudg/web3-protocol-design"
       }
+    },
+    {
+      "name": "ethereum-development",
+      "path": "skills/ethereum-development",
+      "origin": "authored",
+      "license": "MIT",
+      "tags": ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp"],
+      "publish_decision": "candidate"
     }
   ]
 }
