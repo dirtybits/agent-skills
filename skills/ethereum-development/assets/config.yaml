@@ -1,0 +1,27 @@
+# ethereum-development skill configuration
+skill:
+  name: ethereum-development
+  version: "2.0.0"
+  category: blockchain
+  license: MIT
+
+settings:
+  default_network: local
+  preferred_contract_toolchain: foundry
+  preferred_client_library: viem
+  require_explicit_public_broadcast_approval: true
+  require_secret_redaction: true
+  output_format: markdown
+
+validation:
+  require_build: true
+  require_targeted_tests: true
+  require_invariant_statement_for_value_flows: true
+  require_deployment_runbook_for_public_networks: true
+
+risk_levels:
+  local: low
+  testnet: medium
+  mainnet: high
+  ownership_transfer: critical
+  proxy_upgrade: critical
