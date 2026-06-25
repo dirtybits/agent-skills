@@ -8,4 +8,4 @@
 
 - Standardized authored skill licensing to MIT at the repository and per-skill package level.
 - Added a full skill review report and targeted improvements for token-efficient operations, trust-first skill installation, and implementation-sized planning.
-- Added reusable local Hermes skills: `hermes-agent`, `github-workflows`, `software-development-workflows`, `research-intelligence-workflows`, and `obsidian`.
+- Removed builtin/preloaded `hermes-agent` and `obsidian`; retained three local Hermes Agent + dirtybits-created umbrella skills with explicit provenance/attribution notes: `github-workflows`, `software-development-workflows`, and `research-intelligence-workflows`.

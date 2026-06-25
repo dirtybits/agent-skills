@@ -22,14 +22,12 @@ Reviewed every skill in this repository for licensing, operational clarity, and 
 - `turn-closeout`: concise and useful; future improvement would include platform-specific closeout examples for Discord, PRs, and cron outputs.
 - `web3-protocol-design`: strong threat/economics framing; future improvement would add templates for mechanism reviews and abuse-case tables.
 
-## Added useful local skills
+## Local Hermes Agent + dirtybits umbrella skills retained
 
-This branch adds reusable skills that have proven useful in Hermes operations:
+After a provenance spike, this repository keeps these three local Hermes Agent + dirtybits-created umbrella skills because no exact public/Hermes-repo source was found for the umbrella skill names and they appear to have been created in Andy/dirtybits' Hermes environment:
 
-- `hermes-agent`
 - `github-workflows`
 - `software-development-workflows`
 - `research-intelligence-workflows`
-- `obsidian`
 
-These cover agent runtime operations, GitHub delivery, software-development practice, research workflows, and vault-backed note operations.
+Each retained umbrella skill includes an explicit provenance/attribution section. Builtin/preloaded Hermes skills `hermes-agent` and `obsidian` are intentionally removed and should not be claimed as dirtybits-authored.
