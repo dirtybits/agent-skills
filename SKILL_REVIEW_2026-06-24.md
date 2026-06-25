@@ -22,9 +22,9 @@ Reviewed every skill in this repository for licensing, operational clarity, and 
 - `turn-closeout`: concise and useful; future improvement would include platform-specific closeout examples for Discord, PRs, and cron outputs.
 - `web3-protocol-design`: strong threat/economics framing; future improvement would add templates for mechanism reviews and abuse-case tables.
 
-## Added useful local skills
+## Imported existing local Hermes skills
 
-This branch adds reusable skills that have proven useful in Hermes operations:
+This branch imports existing local Hermes skills for review/use; it does not claim they were newly authored by this PR:
 
 - `hermes-agent`
 - `github-workflows`
@@ -32,4 +32,4 @@ This branch adds reusable skills that have proven useful in Hermes operations:
 - `research-intelligence-workflows`
 - `obsidian`
 
-These cover agent runtime operations, GitHub delivery, software-development practice, research workflows, and vault-backed note operations.
+These cover agent runtime operations, GitHub delivery, software-development practice, research workflows, and vault-backed note operations. They should go through attribution review before being published as AgentVouch-authored skills.
