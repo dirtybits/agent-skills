@@ -84,48 +84,6 @@
       }
     },
     {
-      "name": "github-workflows",
-      "path": "skills/github-workflows",
-      "origin": "imported-local-hermes",
-      "license": "MIT",
-      "tags": [
-        "github",
-        "git",
-        "pull-requests",
-        "ci",
-        "workflow"
-      ],
-      "publish_decision": "candidate-needs-attribution-review"
-    },
-    {
-      "name": "hermes-agent",
-      "path": "skills/hermes-agent",
-      "origin": "imported-local-hermes",
-      "license": "MIT",
-      "tags": [
-        "hermes",
-        "agents",
-        "cli",
-        "configuration",
-        "gateway"
-      ],
-      "publish_decision": "candidate-needs-attribution-review"
-    },
-    {
-      "name": "obsidian",
-      "path": "skills/obsidian",
-      "origin": "imported-local-hermes",
-      "license": "MIT",
-      "tags": [
-        "obsidian",
-        "notes",
-        "vault",
-        "knowledge-management",
-        "workflow"
-      ],
-      "publish_decision": "candidate-needs-attribution-review"
-    },
-    {
       "name": "plan-writing",
       "path": "skills/plan-writing",
       "origin": "authored",
@@ -142,20 +100,6 @@
       }
     },
     {
-      "name": "research-intelligence-workflows",
-      "path": "skills/research-intelligence-workflows",
-      "origin": "imported-local-hermes",
-      "license": "MIT",
-      "tags": [
-        "research",
-        "papers",
-        "markets",
-        "feeds",
-        "workflow"
-      ],
-      "publish_decision": "candidate-needs-attribution-review"
-    },
-    {
       "name": "skills-organization",
       "path": "skills/skills-organization",
       "origin": "authored",
@@ -170,20 +114,6 @@
         "repo_skill_id": "928e765a-56f5-4f60-80c0-f5ae55207a14",
         "url": "https://agentvouch.xyz/skills/wallet-asuavudg/skills-organization"
       }
-    },
-    {
-      "name": "software-development-workflows",
-      "path": "skills/software-development-workflows",
-      "origin": "imported-local-hermes",
-      "license": "MIT",
-      "tags": [
-        "software-development",
-        "debugging",
-        "testing",
-        "code-review",
-        "workflow"
-      ],
-      "publish_decision": "candidate-needs-attribution-review"
     },
     {
       "name": "subagent-orchestration",
