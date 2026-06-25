@@ -21,3 +21,13 @@ Reviewed every skill in this repository for licensing, operational clarity, and 
 - `subagent-orchestration`: improved with Hermes/Codex mini-subagent guidance and verification boundaries.
 - `turn-closeout`: concise and useful; future improvement would include platform-specific closeout examples for Discord, PRs, and cron outputs.
 - `web3-protocol-design`: strong threat/economics framing; future improvement would add templates for mechanism reviews and abuse-case tables.
+
+## Local Hermes-created umbrella skills retained
+
+After a provenance spike, this repository keeps these three local Hermes Agent-created umbrella skills because no exact public/Hermes-repo source was found for the umbrella skill names and they appear to have been created in Andy/dirtybits' Hermes environment:
+
+- `github-workflows`
+- `software-development-workflows`
+- `research-intelligence-workflows`
+
+Each retained umbrella skill includes an explicit provenance/attribution section. Builtin/preloaded Hermes skills `hermes-agent` and `obsidian` are intentionally removed and should not be claimed as dirtybits-authored.
