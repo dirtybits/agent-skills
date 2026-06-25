@@ -54,25 +54,35 @@ annual["margin"] = annual["ebitda"] / annual["revenue"]
 ```python
 # Inputs
 revenue_base = 100_000_000
-growth_rates = [0.15, 0.12, 0.10, 0.08, 0.06]  # 5 years
+growth_rates = [0.15, 0.12, 0.10, 0.08, 0.06]
 ebitda_margin = 0.25
+da_pct = 0.04
 capex_pct = 0.05
-nwc_pct = 0.03
+nwc_pct = 0.03  # projected NWC as % of revenue; FCF uses the CHANGE in NWC
 tax_rate = 0.25
 wacc = 0.10
 terminal_growth = 0.025
+net_debt = 20_000_000
+shares_out = 10_000_000
 
 # Projections
-revenues = [revenue_base * np.prod([1 + g for g in growth_rates[:i+1]]) for i in range(5)]
+revenues = [revenue_base * np.prod([1 + g for g in growth_rates[: i + 1]]) for i in range(5)]
 ebitda = [r * ebitda_margin for r in revenues]
-fcf = [e * (1 - tax_rate) - r * capex_pct - r * nwc_pct for e, r in zip(ebitda, revenues)]
+da = [r * da_pct for r in revenues]
+ebit = [e - d for e, d in zip(ebitda, da)]
+nopat = [x * (1 - tax_rate) for x in ebit]
+capex = [r * capex_pct for r in revenues]
+nwc = [r * nwc_pct for r in revenues]
+change_nwc = [nwc[0] - revenue_base * nwc_pct] + [nwc[i] - nwc[i - 1] for i in range(1, len(nwc))]
+fcf = [n + d - c - dnwc for n, d, c, dnwc in zip(nopat, da, capex, change_nwc)]
 
-# Terminal value & DCF
+# Terminal value sanity: terminal_growth must be below WACC.
+assert terminal_growth < wacc, "terminal growth must be below WACC"
 terminal_value = fcf[-1] * (1 + terminal_growth) / (wacc - terminal_growth)
 discount_factors = [(1 / (1 + wacc)) ** (i + 1) for i in range(5)]
-pv_fcf = sum(f * d for f, d in zip(fcf, discount_factors))
-pv_tv = terminal_value * discount_factors[-1]
-enterprise_value = pv_fcf + pv_tv
+enterprise_value = sum(f * d for f, d in zip(fcf, discount_factors)) + terminal_value * discount_factors[-1]
+equity_value = enterprise_value - net_debt
+implied_share_price = equity_value / shares_out
 ```
 
 ### Sensitivity table (2-variable)
@@ -89,9 +99,11 @@ sensitivity = pd.DataFrame(
 ### LBO returns
 ```python
 def moic(entry_ev, exit_ev, entry_debt, exit_debt, equity_check):
+    # equity_check is the sponsor cash invested at entry, after fees/rollover if applicable.
+    if equity_check <= 0:
+        raise ValueError("equity_check must be positive")
     exit_equity = exit_ev - exit_debt
-    entry_equity = entry_ev - entry_debt
-    return exit_equity / entry_equity
+    return exit_equity / equity_check
 
 def irr_approx(moic_val, years):
     return moic_val ** (1 / years) - 1
@@ -109,6 +121,10 @@ comps["ev_ebitda"] = comps["ev"] / comps["ebitda"]
 comps["ev_revenue"] = comps["ev"] / comps["revenue"]
 print(comps[["company","ev_ebitda","ev_revenue"]].describe().loc[["mean","median"]])
 ```
+
+## Production Modeling Guardrails
+
+Before trusting outputs, check units/currency, fiscal periods, restatements, negative values shown in accounting parentheses, source timestamps, and whether line items are point-in-time balance sheet values or period flow values. For ratios and growth rates, guard against zero or negative denominators and explain when a metric is not meaningful. Validate every DCF/LBO with at least one sensitivity table and a bridge from enterprise value to equity value.
 
 ---
 
