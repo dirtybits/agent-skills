@@ -27,6 +27,7 @@ scripts/
 - Keep repo-level documentation at the repository root, not inside skill folders.
 - Preserve upstream attribution for mirrored skills; do not publish third-party work as original wallet-authored work.
 - Publish free repo-backed AgentVouch listings by default.
+- Authored skills in this repository are MIT licensed; preserve original licenses for any mirrored third-party skills.
 
 ## Validate
 

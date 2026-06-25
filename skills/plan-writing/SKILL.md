@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/plan-writi
 tags: ["planning", "documentation", "project-management"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Plan Writing
 
 ## Instructions
@@ -93,3 +94,7 @@ State the desired end state in one short paragraph.
 - Rollback should avoid unrelated destructive changes.
 - Keep the plan concise, but remove ambiguity before removing detail.
 - After execution, statuses and body reflect what actually happened, not what was originally intended.
+
+## Keep plans implementation-sized
+
+A useful plan should be small enough for an agent to execute without re-planning. Break broad initiatives into phases with concrete files, commands, and acceptance checks. Avoid vague tasks like "improve UX"; write observable outcomes such as "add empty-state component in `src/...` and cover it with a screenshot or unit test."

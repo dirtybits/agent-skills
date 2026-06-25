@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/financial-
 tags: ["finance", "analysis", "spreadsheets"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Financial Analysis
 
 ## Core Stack
@@ -206,3 +207,7 @@ for name, fig in figures.items():
 ## Additional Resources
 
 - For extended modeling patterns and formula reference, see [reference.md](reference.md)
+
+## Scope ladder for expensive analysis
+
+Start financial analysis with the smallest artifact that can answer the decision: summary page, latest quarter, key assumptions tab, or one exported table. Only expand to full workbooks or multi-year models after identifying the exact metric or driver that matters. Report assumptions and confidence before producing large outputs; this keeps agent runs cheaper and makes errors easier to audit.

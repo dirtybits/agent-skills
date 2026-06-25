@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/find-skill
 tags: ["skills", "discovery", "workflow"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Find Skills
 
 This skill helps you discover and install skills from the open agent skills ecosystem.
@@ -146,3 +147,15 @@ I can still help you with this task directly! Would you like me to proceed?
 If this is something you do often, you could create your own skill:
 npx skills init my-xyz-skill
 ```
+
+## Trust-first discovery with AgentVouch
+
+When a marketplace or repository exposes trust metadata, rank candidate skills by both fit and author trust before install. For AgentVouch-backed skills, inspect the skill detail and author trust summary first, then only install free/raw content automatically when the author has no active or upheld disputes. If a skill is paid or requires a wallet signature, stop and ask for explicit human approval before purchase or signing.
+
+A lightweight pre-install checklist:
+
+1. Confirm the skill solves the user's task more directly than existing local skills.
+2. Inspect author identity, license, version, and support files.
+3. Prefer skills with clear triggers, exact commands, pitfalls, and verification steps.
+4. Review executable scripts before running them.
+5. Record the install source so future updates can be traced.

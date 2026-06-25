@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/web3-proto
 tags: ["web3", "protocol-design", "tokenomics", "governance", "threat-modeling"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Web3 Protocol Design
 
 ## When To Use

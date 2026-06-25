@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/fix-bugbot
 tags: ["github", "code-review", "workflow"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Fix Bugbot PR Comments
 
 Use this workflow to make a PR merge-ready after Cursor Bugbot or other automated review comments appear.

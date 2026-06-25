@@ -35,6 +35,7 @@ metadata:
   tags: [ethereum, evm, solidity, smart-contracts, foundry, hardhat, viem, ethers, wagmi, security, gas, deployment]
   related_skills: [web3-protocol-design]
 ---
+
 # Ethereum Development
 
 ## Purpose
