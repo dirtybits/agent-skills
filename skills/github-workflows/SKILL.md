@@ -8,7 +8,7 @@ okf_version: "0.1"
 name: github-workflows
 description: "Use when doing GitHub work end-to-end: auth, repository setup, issue triage, PR implementation, code review, CI monitoring, merge/release, and fallback REST workflows."
 version: 1.0.0
-author: Hermes Agent
+author: Hermes Agent + dirtybits
 license: MIT
 platforms: [linux, macos, windows]
 metadata:
@@ -113,6 +113,6 @@ Former standalone skill packages are preserved under `references/absorbed-packag
 
 ## Provenance and Attribution
 
-This is a local Hermes Agent-created umbrella skill from Andy/dirtybits' Hermes environment. A 2026-06-25 provenance spike found no exact public web/GitHub/Hermes-repo match for `name: github-workflows`.
+This is a local Hermes Agent + dirtybits-created umbrella skill from Andy/dirtybits' Hermes environment. A 2026-06-25 provenance spike found no exact public web/GitHub/Hermes-repo match for `name: github-workflows`.
 
 It consolidates older local GitHub workflow skills under `references/absorbed-packages/`. Preserve each absorbed package's original frontmatter, author, license, and attribution when redistributing. Notable adapted source: `requesting-code-review` cites `obra/superpowers + MorAlekss`.

@@ -86,7 +86,7 @@
     {
       "name": "github-workflows",
       "path": "skills/github-workflows",
-      "origin": "local-hermes-agent-created",
+      "origin": "local-hermes-agent-dirtybits-created",
       "license": "MIT",
       "tags": [
         "github",
@@ -97,11 +97,12 @@
       ],
       "publish_decision": "candidate-with-attribution",
       "provenance": {
-        "summary": "Local Hermes Agent-created umbrella skill. No exact public/Hermes-repo match found for this umbrella skill name during 2026-06-25 provenance spike.",
+        "summary": "Local Hermes Agent + dirtybits-created umbrella skill. No exact public/Hermes-repo match found for this umbrella skill name during 2026-06-25 provenance spike.",
         "attribution_notes": [
           "Includes preserved absorbed-package references; retain source/author/license metadata in those files."
         ]
-      }
+      },
+      "author": "Hermes Agent + dirtybits"
     },
     {
       "name": "plan-writing",
@@ -122,7 +123,7 @@
     {
       "name": "research-intelligence-workflows",
       "path": "skills/research-intelligence-workflows",
-      "origin": "local-hermes-agent-created",
+      "origin": "local-hermes-agent-dirtybits-created",
       "license": "MIT",
       "tags": [
         "research",
@@ -133,11 +134,12 @@
       ],
       "publish_decision": "candidate-with-attribution",
       "provenance": {
-        "summary": "Local Hermes Agent-created umbrella skill. No exact public/Hermes-repo match found for this umbrella skill name during 2026-06-25 provenance spike.",
+        "summary": "Local Hermes Agent + dirtybits-created umbrella skill. No exact public/Hermes-repo match found for this umbrella skill name during 2026-06-25 provenance spike.",
         "attribution_notes": [
           "Includes third-party/adapted absorbed packages including blogwatcher and research-paper-writing; retain source/author/license metadata in those files."
         ]
-      }
+      },
+      "author": "Hermes Agent + dirtybits"
     },
     {
       "name": "skills-organization",
@@ -158,7 +160,7 @@
     {
       "name": "software-development-workflows",
       "path": "skills/software-development-workflows",
-      "origin": "local-hermes-agent-created",
+      "origin": "local-hermes-agent-dirtybits-created",
       "license": "MIT",
       "tags": [
         "software-development",
@@ -169,11 +171,12 @@
       ],
       "publish_decision": "candidate-with-attribution",
       "provenance": {
-        "summary": "Local Hermes Agent-created umbrella skill. No exact public/Hermes-repo match found for this umbrella skill name during 2026-06-25 provenance spike.",
+        "summary": "Local Hermes Agent + dirtybits-created umbrella skill. No exact public/Hermes-repo match found for this umbrella skill name during 2026-06-25 provenance spike.",
         "attribution_notes": [
           "Includes preserved absorbed-package references; retain source/author/license metadata in those files."
         ]
-      }
+      },
+      "author": "Hermes Agent + dirtybits"
     },
     {
       "name": "subagent-orchestration",

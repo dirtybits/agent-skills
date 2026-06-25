@@ -8,7 +8,7 @@ okf_version: "0.1"
 name: research-intelligence-workflows
 description: "Use when researching papers, feeds, markets, knowledge bases, or long-form research outputs: arXiv, blog/RSS monitoring, LLM wiki knowledge bases, Polymarket, and paper-writing workflows."
 version: 1.0.0
-author: Hermes Agent
+author: Hermes Agent + dirtybits
 license: MIT
 platforms: [linux, macos, windows]
 metadata:
@@ -85,6 +85,6 @@ Former standalone skill packages are preserved under `references/absorbed-packag
 
 ## Provenance and Attribution
 
-This is a local Hermes Agent-created umbrella skill from Andy/dirtybits' Hermes environment. A 2026-06-25 provenance spike found no exact public web/GitHub/Hermes-repo match for `name: research-intelligence-workflows`.
+This is a local Hermes Agent + dirtybits-created umbrella skill from Andy/dirtybits' Hermes environment. A 2026-06-25 provenance spike found no exact public web/GitHub/Hermes-repo match for `name: research-intelligence-workflows`.
 
 It consolidates older local research skills under `references/absorbed-packages/`. Preserve each absorbed package's original frontmatter, author, license, and attribution when redistributing. Notable third-party/adapted sources include `blogwatcher` by JulienTant/Hyaxia and `research-paper-writing` by Orchestra Research.
