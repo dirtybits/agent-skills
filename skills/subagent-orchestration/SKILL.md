@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/subagent-o
 tags: ["agents", "orchestration", "workflow", "prompting"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Sub-agent Orchestration
 
 A sub-agent is a fresh context window with its own tools that does one scoped
@@ -239,3 +240,16 @@ reveals. Keep it inline; you need the details live, not a summary.
 - **Forgetting the user is blind to it.** The sub-agent's output went to you,
   not them — summarize the outcome.
 - **Silent caps.** Reporting a sampled or top-N sweep as if it were exhaustive.
+
+## Token-efficient Codex mini delegation
+
+When a task can be split into independent review, research, or implementation lanes, prefer small focused subagents over one long monolithic reasoning thread. For Hermes-based delegation in this environment, use OpenAI Codex `gpt-5.4-mini` with extra-high reasoning for child agents when available, then merge only their final findings back into the parent context.
+
+Use mini-subagents for:
+
+- parallel repository review where each child owns a bounded file set;
+- independent source gathering before a synthesis step;
+- test/log triage where noisy command output would otherwise flood the parent context;
+- second-pass review of a diff before push.
+
+Do not spawn subagents for single command lookups, small edits, or tasks that require user interaction. Pass exact paths, constraints, output language, and verification requirements in the child prompt. Require children to return file paths, command outputs, URLs, or IDs that the parent can verify before reporting success.

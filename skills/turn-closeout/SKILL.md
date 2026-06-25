@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/turn-close
 tags: ["codex", "workflow", "communication"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Turn Closeout
 
 Use this skill to make final responses feel complete but still alive with momentum. The closeout should tell the user what happened, how it was verified, and what Codex recommends doing next.

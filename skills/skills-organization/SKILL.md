@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/skills-org
 tags: ["skills", "organization", "workflow"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Skills Organization
 
 Use this skill when keeping local agent skill folders aligned across tools. Treat it as a power-user local workflow: audit first, explain the isolation tradeoffs, then make writes only after the user approves the exact paths.
@@ -181,3 +182,7 @@ The following is an example from one machine on 2026-06-11, not a source of trut
 - `~/.cursor/skills-cursor` is a separate Cursor-managed skill directory; do not merge it automatically.
 - `~/.codex/vendor_imports/skills` is a vendor import checkout; do not merge it automatically.
 - `~/.agent/skills` was not present on that machine; if it exists elsewhere, audit it before using it.
+
+## License hygiene
+
+Every skill package should carry an explicit reusable license. Prefer a repository-level `LICENSE` plus a per-skill `LICENSE.txt` when skills may be copied independently. Keep registry `license` fields and `SKILL.md` frontmatter aligned so publishing, installing, and marketplace indexing do not disagree. If a skill is mirrored from a third party, preserve its original license and attribution instead of rewriting it as authored work.

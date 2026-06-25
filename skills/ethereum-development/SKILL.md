@@ -35,6 +35,7 @@ metadata:
   tags: [ethereum, evm, solidity, smart-contracts, foundry, hardhat, viem, ethers, wagmi, security, gas, deployment]
   related_skills: [web3-protocol-design]
 ---
+
 # Ethereum Development
 
 ## Purpose
@@ -235,13 +236,16 @@ Follow the repo's package manager and lockfile: npm, pnpm, yarn, or bun.
 Read storage slot for `mapping(address => uint256) balances` at slot 0:
 
 ```ts
-import { createPublicClient, encodePacked, http, keccak256 } from "viem";
+import { createPublicClient, encodeAbiParameters, http, keccak256 } from "viem";
 import { mainnet } from "viem/chains";
 
 const client = createPublicClient({ chain: mainnet, transport: http() });
 
 export async function getRawBalanceSlot(contract: `0x${string}`, user: `0x${string}`) {
-  const slot = keccak256(encodePacked(["address", "uint256"], [user, 0n]));
+  // Solidity mapping slots use keccak256(abi.encode(key, slot)) with 32-byte ABI padding.
+  const slot = keccak256(
+    encodeAbiParameters([{ type: "address" }, { type: "uint256" }], [user, 0n]),
+  );
   return client.getStorageAt({ address: contract, slot });
 }
 ```

@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/frontend-d
 tags: ["frontend", "design", "ui"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "see skills/frontend-design/LICENSE.txt"
+license: MIT
 ---
+
 This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
 
 The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
@@ -38,10 +39,24 @@ Focus on:
 - **Spatial Composition**: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
 - **Backgrounds & Visual Details**: Create atmosphere and depth rather than defaulting to solid colors. Add contextual effects and textures that match the overall aesthetic. Apply creative forms like gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, custom cursors, and grain overlays.
 
-NEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts), cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character.
+Avoid generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts) unless performance, licensing, or brand constraints require system fonts; avoid cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character.
 
 Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
 
 **IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
 
 Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+## Non-negotiable UX and Accessibility Checks
+
+Distinctive design still has to work. Before calling a frontend done, verify:
+
+- Keyboard navigation reaches every interactive element in a sensible order.
+- Focus states are visible and match the design system.
+- Semantic HTML is used first; ARIA is added only when it improves accessibility.
+- Text/background contrast is readable in normal and hover/disabled states.
+- Layout works at mobile, tablet, and desktop breakpoints.
+- `prefers-reduced-motion` disables or simplifies nonessential motion.
+- Loading, error, empty, and long-content states are designed, not default browser afterthoughts.
+
+Run the project's build/lint/typecheck when available, then smoke-test in a browser at a mobile viewport and a desktop viewport.

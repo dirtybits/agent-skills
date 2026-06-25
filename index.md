@@ -3,7 +3,7 @@ okf_version: "0.1"
 type: Index
 title: Agent Skills Knowledge Bundle
 description: OKF-inspired index for dirtybits AgentVouch skill packages.
-timestamp: "2026-06-22T19:18:50Z"
+timestamp: "2026-06-25T06:48:10Z"
 ---
 
 # Agent Skills Knowledge Bundle

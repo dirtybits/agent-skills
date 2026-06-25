@@ -7,8 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/fix-bugbot
 tags: ["github", "code-review", "workflow"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-license: "all-rights-reserved"
+license: MIT
 ---
+
 # Fix Bugbot PR Comments
 
 Use this workflow to make a PR merge-ready after Cursor Bugbot or other automated review comments appear.
@@ -38,7 +39,7 @@ If there are local changes, determine whether they are yours and relevant before
 
 ## Fetch Unresolved Comments
 
-Use GraphQL so resolved threads are filtered before reading bodies:
+Use GraphQL so resolved threads are filtered before reading bodies. If a PR may have more than 100 review threads or 50 reviews, paginate with `pageInfo { hasNextPage endCursor }` and repeat until complete; do not silently assume `first:100` covers everything:
 
 ```bash
 OWNER_REPO="$(gh repo view --json owner,name -q '.owner.login + "/" + .name')"
@@ -114,6 +115,20 @@ git status --short
 ```
 
 If a build rewrites a tracked binary or generated artifact unrelated to the fix, restore it before committing.
+
+
+## Reviewer Filtering and Follow-up
+
+Separate automated review findings from human review. Filter Cursor Bugbot and other bots by author login/body patterns, but keep human comments visible for product or maintainer decisions. After a fix, reply with a concise rationale and evidence when useful; resolve the thread only when the platform and repository convention allow it. For GitHub GraphQL thread resolution, use `resolveReviewThread` with the thread ID after verifying the fix is pushed.
+
+Before chasing CI, fetch the base branch and check freshness:
+
+```bash
+git fetch origin
+git merge-base --is-ancestor origin/main HEAD || echo "branch may need update/rebase"
+```
+
+Do not blame Bugbot for stale-base CI failures until the failing logs prove the PR change caused them.
 
 ## CI Loop
 
