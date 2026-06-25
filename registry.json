@@ -86,7 +86,7 @@
     {
       "name": "github-workflows",
       "path": "skills/github-workflows",
-      "origin": "authored-local-hermes",
+      "origin": "imported-local-hermes",
       "license": "MIT",
       "tags": [
         "github",
@@ -95,12 +95,12 @@
         "ci",
         "workflow"
       ],
-      "publish_decision": "candidate"
+      "publish_decision": "candidate-needs-attribution-review"
     },
     {
       "name": "hermes-agent",
       "path": "skills/hermes-agent",
-      "origin": "authored-local-hermes",
+      "origin": "imported-local-hermes",
       "license": "MIT",
       "tags": [
         "hermes",
@@ -109,12 +109,12 @@
         "configuration",
         "gateway"
       ],
-      "publish_decision": "candidate"
+      "publish_decision": "candidate-needs-attribution-review"
     },
     {
       "name": "obsidian",
       "path": "skills/obsidian",
-      "origin": "authored-local-hermes",
+      "origin": "imported-local-hermes",
       "license": "MIT",
       "tags": [
         "obsidian",
@@ -123,7 +123,7 @@
         "knowledge-management",
         "workflow"
       ],
-      "publish_decision": "candidate"
+      "publish_decision": "candidate-needs-attribution-review"
     },
     {
       "name": "plan-writing",
@@ -144,7 +144,7 @@
     {
       "name": "research-intelligence-workflows",
       "path": "skills/research-intelligence-workflows",
-      "origin": "authored-local-hermes",
+      "origin": "imported-local-hermes",
       "license": "MIT",
       "tags": [
         "research",
@@ -153,7 +153,7 @@
         "feeds",
         "workflow"
       ],
-      "publish_decision": "candidate"
+      "publish_decision": "candidate-needs-attribution-review"
     },
     {
       "name": "skills-organization",
@@ -174,7 +174,7 @@
     {
       "name": "software-development-workflows",
       "path": "skills/software-development-workflows",
-      "origin": "authored-local-hermes",
+      "origin": "imported-local-hermes",
       "license": "MIT",
       "tags": [
         "software-development",
@@ -183,7 +183,7 @@
         "code-review",
         "workflow"
       ],
-      "publish_decision": "candidate"
+      "publish_decision": "candidate-needs-attribution-review"
     },
     {
       "name": "subagent-orchestration",
