@@ -105,6 +105,20 @@
       "author": "Hermes Agent + dirtybits"
     },
     {
+      "name": "npm-publish",
+      "path": "skills/npm-publish",
+      "origin": "authored",
+      "license": "MIT",
+      "tags": [
+        "npm",
+        "node",
+        "release",
+        "publishing",
+        "workflow"
+      ],
+      "publish_decision": "candidate"
+    },
+    {
       "name": "plan-writing",
       "path": "skills/plan-writing",
       "origin": "authored",

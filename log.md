@@ -9,3 +9,6 @@
 - Standardized authored skill licensing to MIT at the repository and per-skill package level.
 - Added a full skill review report and targeted improvements for token-efficient operations, trust-first skill installation, and implementation-sized planning.
 - Removed builtin/preloaded `hermes-agent` and `obsidian`; retained three local Hermes Agent + dirtybits-created umbrella skills with explicit provenance/attribution notes: `github-workflows`, `software-development-workflows`, and `research-intelligence-workflows`.
+## 2026-06-30
+
+- Added `npm-publish`, a release workflow skill for npm workspace publishing, dist-tags, 2FA, tarball smoke tests, security-guarded verification, and common npm publish/install failure modes.
