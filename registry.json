@@ -105,6 +105,35 @@
       "author": "Hermes Agent + dirtybits"
     },
     {
+      "name": "guarded-db-migration",
+      "path": "skills/guarded-db-migration",
+      "origin": "authored",
+      "license": "MIT",
+      "tags": [
+        "database",
+        "postgres",
+        "migrations",
+        "neon",
+        "operations",
+        "safety"
+      ],
+      "publish_decision": "candidate"
+    },
+    {
+      "name": "multi-agent-worktree-discipline",
+      "path": "skills/multi-agent-worktree-discipline",
+      "origin": "authored",
+      "license": "MIT",
+      "tags": [
+        "git",
+        "worktrees",
+        "multi-agent",
+        "workflow",
+        "session-bootstrap"
+      ],
+      "publish_decision": "candidate"
+    },
+    {
       "name": "npm-publish",
       "path": "skills/npm-publish",
       "origin": "authored",
@@ -115,6 +144,20 @@
         "release",
         "publishing",
         "workflow"
+      ],
+      "publish_decision": "candidate"
+    },
+    {
+      "name": "phase-pr-review-loop",
+      "path": "skills/phase-pr-review-loop",
+      "origin": "authored",
+      "license": "MIT",
+      "tags": [
+        "code-review",
+        "pull-requests",
+        "workflow",
+        "multi-agent",
+        "verification"
       ],
       "publish_decision": "candidate"
     },
