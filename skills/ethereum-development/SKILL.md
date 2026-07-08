@@ -202,6 +202,8 @@ cast call <address> "fn()" --rpc-url "$RPC_URL"
 cast send <address> "fn(uint256)" 1 --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
 cast storage <address> <slot> --rpc-url "$RPC_URL"
 cast run --trace <tx_hash> --rpc-url "$RPC_URL"
+cast sig "fn(address,uint256)"
+cast code <address> --rpc-url "$RPC_URL"
 ```
 
 Fork testing:
@@ -421,6 +423,65 @@ After broadcast:
 2. Decode custom error selectors against compiled ABIs.
 3. Check caller, msg.value, approvals, balances, block timestamp, chain ID, and fork block.
 4. Confirm proxy address vs implementation address.
+
+### ABI Or Deployment Drift
+
+When a client error says a function "returned no data", "address is not a contract", or only
+`execution reverted`, do not trust the wording until you prove what is deployed.
+
+1. Confirm bytecode exists at the configured address:
+   `cast code "$CONTRACT" --rpc-url "$RPC_URL"`.
+2. Compute the expected selector:
+   `cast sig "openReport(address,string)"`.
+3. Check whether the selector appears in deployed bytecode. Absence usually means the ABI/local
+   source is ahead of the configured deployment, the app points at an old contract, or a proxy
+   target is wrong.
+4. Probe nearby known-good reads such as version/config/profile getters. If reads work but the new
+   selector is absent, treat it as deployment drift, not a wallet, approval, or token-balance bug.
+5. Compare local artifact/deployment records against the live address and update the address book,
+   proxy implementation, or deployment before retrying the write.
+
+Useful quick check:
+
+```bash
+selector=$(cast sig "openReport(address,string)" | sed 's/^0x//')
+code=$(cast code "$CONTRACT" --rpc-url "$RPC_URL")
+case "$code" in
+  *"$selector"*) echo "selector present" ;;
+  *) echo "selector absent: ABI/source likely ahead of deployment" ;;
+esac
+```
+
+For ETH-less smart-account or account-abstraction senders, a fork trace can fail transaction
+validation before contract execution because the sender has no ETH. Override only the simulated
+sender balance:
+
+```bash
+cast call \
+  --rpc-url "$RPC_URL" \
+  --from "$SMART_ACCOUNT" \
+  --override-balance "$SMART_ACCOUNT:1000000000000000000" \
+  --trace \
+  "$CONTRACT" \
+  "openReport(address,string)(uint64)" \
+  "$AUTHOR" \
+  "$EVIDENCE_URI"
+```
+
+If the trace reverts immediately with no internal calls and the selector is absent from bytecode,
+the configured deployment does not implement that function. Fail closed in the app before asking for
+token approvals or wallet signatures.
+
+### Account-Abstraction Write Debugging
+
+- Treat bundler/smart-account simulation and return decoding as transport-specific. A batched call
+  may surface an account-level empty return even when the contract ABI has a return value.
+- For writes where events are the authoritative success proof, consider sending raw calldata for the
+  final contract call and validating the receipt/event afterward.
+- Always separate capability preflights from money movement: verify chain ID, deployed code,
+  selector/proxy target, balance, and allowance before prompting for approvals.
+- Do not use a successful ERC-20 `approve` or `transferFrom` simulation as proof the target protocol
+  write exists. Token movement can be valid while the configured protocol contract is stale.
 
 ### Nonce Or Pending Tx Problems
 
