@@ -7,10 +7,10 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/ethereum-d
 tags: ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp", "viem", "ethers", "wagmi", "gas", "deployment"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-version: "2.0.0"
+version: "2.1.0"
 license: MIT
 sasmp_version: "1.3.0"
-updated: "2026-06"
+updated: "2026-07"
 atomic: true
 single_responsibility: ethereum_development
 parameters:
@@ -84,6 +84,7 @@ Before making changes:
 4. Locate address books, deployment artifacts, ABIs, generated clients, verification data, and prior audit notes.
 5. Determine the target network and environment: local, fork, testnet, staging, mainnet, or multi-chain.
 6. Identify all externally owned accounts, multisigs, timelocks, keepers, relayers, oracle feeds, bridges, and protocol dependencies.
+7. Record each growing contract's deployed-runtime baseline, target-chain hard limit, and project soft limit under the exact production compiler profile.
 
 ## Design And Implementation Workflow
 
@@ -100,6 +101,15 @@ Before making changes:
 6. Add or update tests before declaring success.
 7. Run formatters, compile, targeted tests, and broader tests appropriate to risk.
 8. For public network actions, prepare a runbook and get explicit approval before broadcasting.
+
+## Runtime Size And Architecture
+
+Treat deployed runtime bytecode as a deployability invariant, not a gas optimization. Read [Contract Size And Architecture](references/CONTRACT_SIZE.md) when a contract is expected to grow materially or approaches its target-chain limit.
+
+- Measure deployed runtime before substantial work and after each representative vertical slice; record baseline, delta, hard limit, and remaining headroom under the exact production compiler profile.
+- Set a project soft limit below the chain's hard limit when review fixes or future growth are expected. A green test suite never overrides an undeployable artifact.
+- Attribute actual byte growth before optimizing. Prefer mechanism simplification, measured deduplication, and compact ABI surfaces before adding cross-contract or upgrade complexity.
+- Treat linked libraries, compiler-pipeline changes, modules, facets, and proxies as architecture or deployment changes. Compare storage, ABI, verification, security, upgradeability, and regression impact explicitly.
 
 ## Solidity Guidance
 
@@ -122,6 +132,7 @@ Before making changes:
 - Treat ERC-20/721/1155 calls as external calls with arbitrary behavior.
 - Do not rely on `transfer`/`send` gas assumptions for ETH.
 - Avoid hidden dependencies on `block.timestamp` or `block.number` precision.
+- Budget view functions and getters: large tuples, nested structs, dynamic values, and compatibility wrappers can generate substantial runtime ABI-encoder code.
 
 ### Tokens
 
@@ -307,6 +318,7 @@ Minimum expected verification for contract changes:
 - Invariant tests for value/accounting/authorization state machines.
 - Fork tests for live integrations pinned to a block number.
 - Gas snapshot/report if gas matters.
+- Deployed-runtime measurement and soft/hard size-budget enforcement if a contract changed.
 
 Foundry invariant example:
 
@@ -398,13 +410,14 @@ Before public broadcast:
 1. Confirm clean git status, branch, commit, release tag, and artifacts.
 2. Confirm network name, chain ID, RPC URL, explorer URL, deployer address, deployer balance, nonce, and gas settings.
 3. Run full test suite and required fork/fuzz/invariant tests.
-4. Run deployment script in dry-run/simulation mode.
-5. Record expected addresses, constructor args, initializer calldata, CREATE2 salts, proxy admin, implementation, owner, roles.
-6. Confirm secrets path or hardware wallet flow without exposing keys.
-7. Confirm multisig/timelock addresses and role transfer order.
-8. Prepare verification command and explorer API key.
-9. Prepare pause/rollback/communication plan.
-10. Get explicit user approval before broadcasting.
+4. Confirm deployed runtime is within the recorded hard and soft limits under the exact verification compiler profile.
+5. Run deployment script in dry-run/simulation mode.
+6. Record expected addresses, constructor args, initializer calldata, CREATE2 salts, proxy admin, implementation, owner, roles.
+7. Confirm secrets path or hardware wallet flow without exposing keys.
+8. Confirm multisig/timelock addresses and role transfer order.
+9. Prepare verification command and explorer API key.
+10. Prepare pause/rollback/communication plan.
+11. Get explicit user approval before broadcasting.
 
 After broadcast:
 

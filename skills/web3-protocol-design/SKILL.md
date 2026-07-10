@@ -33,6 +33,19 @@ Use this skill when the task involves:
 7. Threat-model the design against economic, technical, governance, liquidity, oracle, and UX failures.
 8. Define launch gates: tests, simulations, audits, monitoring, limits, emergency controls, and rollout stages.
 
+## Complex Settlement Guardrails
+
+Read [Slashing And Dispute Settlement](references/slashing-and-dispute-settlement.md) when a mechanism combines penalties, claims, rewards, reserves, deadlines, sweeps, or multi-transaction settlement.
+
+- Decompose enforcement, restitution, reporter or keeper incentives, and surplus routing into separate ledgers. For each, specify funding source, beneficiary, priority, cap, and failure behavior before combining them.
+- Compare trigger cost and scope, harmed-party loss, penalized exposure, and beneficiary payout. Require an explicit cap or risk acceptance for cheap-trigger/system-wide-penalty and windfall cases.
+- Define claimant cohort, allocation rule, funding point, shortfall behavior, deadline start, unclaimed-fund ownership, and upgrade or cutover treatment.
+- Require every role, reserve, reward, timeout, sweep, and lifecycle state to justify itself against the minimum credible safety mechanism. Defer adjacent insurance, bounty, governance, or redistribution policy when unnecessary.
+- For staged work, snapshot mutable economics and exposure, freeze every mutation that can change the work set, make replay boundaries permanent, and prove completion through conserved accounting.
+- Do not make terminal state or lock release depend on a recipient transfer. Finalize fixed accounting first, then use independently retryable payouts when recipient failure could block the protocol.
+- Treat unpaid credits and no-expiry claims as liabilities. Raw contract balance is not surplus while any liability remains, and successor deployments must preserve old claims.
+- For cross-chain ports, preserve approved invariants and semantics rather than source-chain machinery. Budget target-chain code/program size, gas/compute, transaction inputs, state ownership, call boundaries, and upgrade topology before design lock.
+
 ## Protocol Spec Template
 
 Use this structure unless the user asks for another format:
@@ -55,6 +68,12 @@ Use this structure unless the user asks for another format:
 ## State Model
 - [State/account/contract]: [owner, fields, authority, lifecycle.]
 
+## Chain Resource Budget
+- Deployment code/program size:
+- Per-transaction gas/compute:
+- Transaction data/accounts:
+- State ownership and call boundaries:
+
 ## Flows
 1. [Flow name]: [preconditions, steps, postconditions, failure cases.]
 
@@ -63,6 +82,10 @@ Use this structure unless the user asks for another format:
 - Rewards:
 - Penalties:
 - Slashing:
+- Claim cohort and allocation:
+- Funding priority, shortfall, and backstop:
+- Surplus and unclaimed-fund ownership:
+- Trigger, harm, maximum penalty, and maximum payout:
 - MEV/extraction risk:
 
 ## Trust Assumptions
@@ -97,6 +120,9 @@ Check these before calling a design ready:
 - Fees, rewards, and slashing are denominated in exact units and rounding behavior is specified.
 - Oracle, bridge, and keeper failures have explicit stale-data and liveness behavior.
 - User deposits, withdrawals, refunds, disputes, and cancellations have bounded failure paths.
+- Enforcement, restitution, incentives, and surplus are separately specified before their ledgers are combined.
+- Maximum penalty and payout are compared with trigger cost, harmed-party loss, and penalized exposure.
+- Claim funding, shortfall, expiry, sweep, transfer failure, and upgrade/cutover behavior are explicit.
 - Incentives still work when volume is low, rewards are exhausted, liquidity is thin, or a rational actor griefs the system.
 - Upgrade and emergency controls cannot silently change user claims without a visible process.
 - Invariants are testable and include conservation of value, authorization, accounting, and replay protection.

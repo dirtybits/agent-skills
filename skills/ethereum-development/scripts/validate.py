@@ -20,9 +20,12 @@ REQUIRED_FILES = [
     "assets/schema.json",
     "references/GUIDE.md",
     "references/PATTERNS.md",
+    "references/CONTRACT_SIZE.md",
+    "scripts/check_runtime_size.py",
 ]
 REQUIRED_PHRASES = [
     "Deployment Runbook",
+    "Runtime Size And Architecture",
     "Security Review Checklist",
     "Gas Optimization Checklist",
     "Testing Strategy",

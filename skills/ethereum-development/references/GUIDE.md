@@ -60,6 +60,7 @@ npm install viem wagmi @tanstack/react-query
 - What invariant would prove user funds are safe?
 - Which off-chain services must consume events?
 - What happens if an oracle, bridge, keeper, relayer, or RPC provider fails?
+- What is each growing contract's deployed-runtime baseline, hard limit, soft limit, and remaining headroom under the production compiler profile?
 
 ## Foundry Verification Commands
 
@@ -71,6 +72,8 @@ forge test --gas-report
 forge snapshot
 forge inspect <Contract> storage-layout
 ```
+
+For a CI-friendly deployed-runtime budget check, use `scripts/check_runtime_size.py` against the compiled artifact. See [Contract Size And Architecture](CONTRACT_SIZE.md) for the workflow and strategy matrix.
 
 Fork test with pinned state:
 
@@ -121,6 +124,7 @@ npx hardhat verify --network <network> <address> <constructor args...>
 Do not recommend mainnet broadcast unless these are true or explicitly waived:
 
 - Full tests pass.
+- Deployed runtime is within both the target-chain hard limit and the approved project soft limit.
 - Fork tests pass for live dependencies.
 - Invariants/fuzz tests cover value flows.
 - Deployment dry-run succeeds.

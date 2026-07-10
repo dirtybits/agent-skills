@@ -51,6 +51,17 @@ Good candidates:
 - unchecked loop increments
 - avoiding duplicate hashing/encoding
 
+## Pattern: Contract Size Triage
+
+1. Compile with the exact production solc, optimizer, EVM target, metadata, and library-link settings.
+2. Record deployed-runtime bytes, baseline delta, hard limit, project soft limit, and headroom.
+3. Attribute growth with controlled compile experiments; change one function, ABI surface, or compiler setting at a time.
+4. Revalidate whether every workflow state, compatibility wrapper, and returned field is required.
+5. Try measured deduplication and compact views before introducing new deployment boundaries.
+6. Evaluate linked libraries, separate contracts, `viaIR`, delegate modules, facets, and proxies using the matrix in [Contract Size And Architecture](CONTRACT_SIZE.md).
+7. Re-run ABI, storage-layout, unit, fuzz, invariant, gas, deployment, and verification checks for the selected strategy.
+8. Fail the release if either the hard limit or the approved soft limit is exceeded.
+
 ## Pattern: Upgrade Review
 
 1. Identify proxy type and admin.
@@ -77,5 +88,8 @@ Good candidates:
 - Relying on `transfer`/`send` gas behavior.
 - Using floating point for token amounts.
 - Ignoring proxy storage layout.
+- Treating a proxy shell as a fix for an oversized implementation.
+- Assuming internal libraries or `viaIR` will reduce runtime without measuring the exact artifact.
+- Treating view functions and large ABI encoders as bytecode-free.
 - Omitting events needed by indexers.
 - Catching and swallowing failed keeper/relayer transactions.
