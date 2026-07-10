@@ -29,6 +29,17 @@ scripts/
 - Publish free repo-backed AgentVouch listings by default.
 - Authored skills in this repository are MIT licensed; preserve original licenses for any mirrored third-party skills.
 
+## Discovering External Skills
+
+Agents can discover task-specific capabilities through the [Vercel Agent Skills directory](https://vercel.com/docs/agent-resources/skills):
+
+```bash
+npx skills find <query>
+npx skills add <owner/repo> --skill <skill-name>
+```
+
+See [AGENTS.md](AGENTS.md) for installation guidance, source-review expectations, and rules for bringing third-party skills into this repository.
+
 ## Validate
 
 ```bash
