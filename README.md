@@ -55,17 +55,3 @@ npm run kb:format
 ```
 
 This applies the repo's OKF-inspired conventions to skill/reference frontmatter and regenerates indexes.
-
-## Publish Dry Run
-
-```bash
-AGENTVOUCH_KEYPAIR=~/test-keypair.json npm run publish:dry-run
-```
-
-Real publishing requires an explicit flag:
-
-```bash
-AGENTVOUCH_KEYPAIR=~/test-keypair.json npm run publish -- --apply
-```
-
-The publish script skips entries whose `publish_decision` is not `candidate`.
