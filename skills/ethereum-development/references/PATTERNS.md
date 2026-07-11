@@ -30,7 +30,7 @@ Useful commands:
 
 ```bash
 forge test -vvvv --match-test <TestName>
-cast run --trace <tx_hash> --rpc-url "$RPC_URL"
+cast run <tx_hash> --rpc-url "$RPC_URL"
 cast 4byte <selector>
 ```
 

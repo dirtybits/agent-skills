@@ -7,33 +7,9 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/ethereum-d
 tags: ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp", "viem", "ethers", "wagmi", "gas", "deployment"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-version: "2.1.0"
+version: "2.2.0"
 license: MIT
-sasmp_version: "1.3.0"
 updated: "2026-07"
-atomic: true
-single_responsibility: ethereum_development
-parameters:
-  topic:
-    type: string
-    required: false
-    enum: [architecture, solidity, evm, gas, transactions, clients, testing, security, deployment, frontend, indexing, debugging, incident-response]
-  network:
-    type: string
-    required: false
-    default: local
-    enum: [local, mainnet, sepolia, holesky, hoodi, base, optimism, arbitrum, polygon, bsc, avalanche, gnosis, custom]
-  stack:
-    type: string
-    required: false
-    enum: [foundry, hardhat, mixed, frontend, backend, indexer, unknown]
-retry_config:
-  max_attempts: 3
-  backoff: exponential
-  initial_delay_ms: 1000
-metadata:
-  tags: [ethereum, evm, solidity, smart-contracts, foundry, hardhat, viem, ethers, wagmi, security, gas, deployment]
-  related_skills: [web3-protocol-design]
 ---
 
 # Ethereum Development
@@ -122,6 +98,7 @@ Treat deployed runtime bytecode as a deployability invariant, not a gas optimiza
 - Know storage slot mechanics for mappings and dynamic arrays when debugging:
   - mapping value slot: `keccak256(abi.encode(key, mappingSlot))`
   - dynamic array data starts at `keccak256(arraySlot)`
+- Transient storage (EIP-1153 `tstore`/`tload`) clears at the end of the transaction. It fits reentrancy locks and intra-transaction context, never persistent state; confirm target-chain support before relying on it.
 
 ### Function Design
 
@@ -175,7 +152,8 @@ Handle non-standard token behavior:
 - Type 0 legacy: `gasPrice`
 - Type 1 access list: EIP-2930
 - Type 2 EIP-1559: `maxFeePerGas`, `maxPriorityFeePerGas`
-- Blob transactions on applicable networks: EIP-4844 semantics for blob gas
+- Type 3 blob transactions on applicable networks: EIP-4844 semantics for blob gas
+- Type 4 set-code: EIP-7702 delegates an EOA to contract code via a signed authorization list. Check chain support, delegation revocation, and that contracts no longer assume `msg.sender == tx.origin` implies a plain EOA.
 
 Operational checks:
 
@@ -195,89 +173,7 @@ Operational checks:
 
 ## Tooling Recipes
 
-### Foundry
-
-```bash
-forge fmt
-forge build
-forge build --sizes
-forge test
-forge test -vvv --match-test <TestName>
-forge test --match-contract <ContractName>
-forge test --gas-report
-forge coverage
-forge snapshot
-forge inspect <ContractName> storage-layout
-anvil --chain-id 31337
-cast call <address> "fn()" --rpc-url "$RPC_URL"
-cast send <address> "fn(uint256)" 1 --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
-cast storage <address> <slot> --rpc-url "$RPC_URL"
-cast run --trace <tx_hash> --rpc-url "$RPC_URL"
-cast sig "fn(address,uint256)"
-cast code <address> --rpc-url "$RPC_URL"
-```
-
-Fork testing:
-
-```bash
-forge test --fork-url "$MAINNET_RPC_URL" --fork-block-number <block> -vvv
-```
-
-Deployment rehearsal:
-
-```bash
-forge script script/Deploy.s.sol:Deploy --rpc-url "$RPC_URL" --sender <deployer> --dry-run -vvvv
-forge script script/Deploy.s.sol:Deploy --rpc-url "$RPC_URL" --broadcast --verify -vvvv
-```
-
-### Hardhat
-
-```bash
-npm test
-npx hardhat compile
-npx hardhat test
-npx hardhat test test/<file>.ts
-npx hardhat node
-npx hardhat run scripts/deploy.ts --network <network>
-npx hardhat verify --network <network> <address> <constructor-args>
-```
-
-Follow the repo's package manager and lockfile: npm, pnpm, yarn, or bun.
-
-### viem Client Examples
-
-Read storage slot for `mapping(address => uint256) balances` at slot 0:
-
-```ts
-import { createPublicClient, encodeAbiParameters, http, keccak256 } from "viem";
-import { mainnet } from "viem/chains";
-
-const client = createPublicClient({ chain: mainnet, transport: http() });
-
-export async function getRawBalanceSlot(contract: `0x${string}`, user: `0x${string}`) {
-  // Solidity mapping slots use keccak256(abi.encode(key, slot)) with 32-byte ABI padding.
-  const slot = keccak256(
-    encodeAbiParameters([{ type: "address" }, { type: "uint256" }], [user, 0n]),
-  );
-  return client.getStorageAt({ address: contract, slot });
-}
-```
-
-Send an EIP-1559 transaction:
-
-```ts
-import { createWalletClient, http, parseEther, parseGwei } from "viem";
-
-const wallet = createWalletClient({ transport: http() });
-
-const hash = await wallet.sendTransaction({
-  account,
-  to: recipient,
-  value: parseEther("0.1"),
-  maxFeePerGas: parseGwei("30"),
-  maxPriorityFeePerGas: parseGwei("2"),
-});
-```
+Full command recipes live in [references/GUIDE.md](references/GUIDE.md): Foundry build/test/trace/storage commands, fork testing, deployment rehearsal, Hardhat equivalents, and viem client examples (storage slot reads, EIP-1559 sends). Follow the repo's package manager and lockfile: npm, pnpm, yarn, or bun.
 
 ## Gas Optimization Checklist
 
@@ -432,7 +328,7 @@ After broadcast:
 
 ### Revert Without Clear Error
 
-1. Re-run with verbose traces: `forge test -vvvv` or `cast run --trace`.
+1. Re-run with verbose traces: `forge test -vvvv` or `cast run <tx_hash>` (traces print by default; there is no `--trace` flag on `cast run`).
 2. Decode custom error selectors against compiled ABIs.
 3. Check caller, msg.value, approvals, balances, block timestamp, chain ID, and fork block.
 4. Confirm proxy address vs implementation address.
