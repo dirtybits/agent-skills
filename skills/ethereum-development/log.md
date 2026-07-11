@@ -1,5 +1,13 @@
 # Directory Update Log
 
+## 2026-07-11
+* **Fix**: Corrected `cast run --trace` to `cast run` (traces print by default) in SKILL.md, GUIDE.md, and PATTERNS.md.
+* **Update**: Added EIP-7702 type-4 set-code transactions and EIP-1153 transient storage guidance.
+* **Update**: Moved tooling command recipes from SKILL.md into references/GUIDE.md for progressive disclosure; removed unused frontmatter machinery (`sasmp_version`, `atomic`, `single_responsibility`, `parameters`, `retry_config`, `metadata`). Bumped to 2.2.0.
+
+## 2026-07-09
+* **Update**: Added deployed-runtime budgeting, EIP-170 architecture triage, ABI-encoder guidance, and a CI-friendly runtime-size checker.
+
 ## 2026-06-22
 * **Creation**: Added the Ethereum Development skill package with MIT license.
 * **Update**: Expanded the package with assets, schema, references, validation, security guidance, and deployment runbooks.

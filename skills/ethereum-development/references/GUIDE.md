@@ -60,17 +60,30 @@ npm install viem wagmi @tanstack/react-query
 - What invariant would prove user funds are safe?
 - Which off-chain services must consume events?
 - What happens if an oracle, bridge, keeper, relayer, or RPC provider fails?
+- What is each growing contract's deployed-runtime baseline, hard limit, soft limit, and remaining headroom under the production compiler profile?
 
-## Foundry Verification Commands
+## Foundry Commands
 
 ```bash
 forge fmt --check
+forge build
 forge build --sizes
-forge test -vvv
+forge test
+forge test -vvv --match-test <TestName>
+forge test --match-contract <ContractName>
 forge test --gas-report
+forge coverage
 forge snapshot
-forge inspect <Contract> storage-layout
+forge inspect <ContractName> storage-layout
+anvil --chain-id 31337
+cast call <address> "fn()" --rpc-url "$RPC_URL"
+cast send <address> "fn(uint256)" 1 --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
+cast storage <address> <slot> --rpc-url "$RPC_URL"
+cast sig "fn(address,uint256)"
+cast code <address> --rpc-url "$RPC_URL"
 ```
+
+For a CI-friendly deployed-runtime budget check, use `scripts/check_runtime_size.py` against the compiled artifact. See [Contract Size And Architecture](CONTRACT_SIZE.md) for the workflow and strategy matrix.
 
 Fork test with pinned state:
 
@@ -78,27 +91,67 @@ Fork test with pinned state:
 forge test --fork-url "$MAINNET_RPC_URL" --fork-block-number <block> -vvv
 ```
 
-Trace a transaction:
+Trace a transaction (`cast run` prints traces by default; there is no `--trace` flag):
 
 ```bash
-cast run --trace <tx_hash> --rpc-url "$RPC_URL"
+cast run <tx_hash> --rpc-url "$RPC_URL"
 ```
 
-Inspect storage:
+Deployment rehearsal:
 
 ```bash
-cast storage <contract> <slot> --rpc-url "$RPC_URL"
+forge script script/Deploy.s.sol:Deploy --rpc-url "$RPC_URL" --sender <deployer> --dry-run -vvvv
+forge script script/Deploy.s.sol:Deploy --rpc-url "$RPC_URL" --broadcast --verify -vvvv
 ```
 
-## Hardhat Verification Commands
+## Hardhat Commands
 
 ```bash
+npm test
 npx hardhat compile
 npx hardhat test
 npx hardhat test test/<file>.ts
 npx hardhat coverage
+npx hardhat node
 npx hardhat run scripts/deploy.ts --network <network>
 npx hardhat verify --network <network> <address> <constructor args...>
+```
+
+Follow the repo's package manager and lockfile: npm, pnpm, yarn, or bun.
+
+## viem Client Examples
+
+Read storage slot for `mapping(address => uint256) balances` at slot 0:
+
+```ts
+import { createPublicClient, encodeAbiParameters, http, keccak256 } from "viem";
+import { mainnet } from "viem/chains";
+
+const client = createPublicClient({ chain: mainnet, transport: http() });
+
+export async function getRawBalanceSlot(contract: `0x${string}`, user: `0x${string}`) {
+  // Solidity mapping slots use keccak256(abi.encode(key, slot)) with 32-byte ABI padding.
+  const slot = keccak256(
+    encodeAbiParameters([{ type: "address" }, { type: "uint256" }], [user, 0n]),
+  );
+  return client.getStorageAt({ address: contract, slot });
+}
+```
+
+Send an EIP-1559 transaction:
+
+```ts
+import { createWalletClient, http, parseEther, parseGwei } from "viem";
+
+const wallet = createWalletClient({ transport: http() });
+
+const hash = await wallet.sendTransaction({
+  account,
+  to: recipient,
+  value: parseEther("0.1"),
+  maxFeePerGas: parseGwei("30"),
+  maxPriorityFeePerGas: parseGwei("2"),
+});
 ```
 
 ## Deployment Evidence To Capture
@@ -121,6 +174,7 @@ npx hardhat verify --network <network> <address> <constructor args...>
 Do not recommend mainnet broadcast unless these are true or explicitly waived:
 
 - Full tests pass.
+- Deployed runtime is within both the target-chain hard limit and the approved project soft limit.
 - Fork tests pass for live dependencies.
 - Invariants/fuzz tests cover value flows.
 - Deployment dry-run succeeds.

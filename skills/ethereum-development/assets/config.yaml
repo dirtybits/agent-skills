@@ -1,7 +1,7 @@
 # ethereum-development skill configuration
 skill:
   name: ethereum-development
-  version: "2.0.0"
+  version: "2.2.0"
   category: blockchain
   license: MIT
 
@@ -17,6 +17,7 @@ validation:
   require_build: true
   require_targeted_tests: true
   require_invariant_statement_for_value_flows: true
+  require_runtime_size_budget_for_contract_changes: true
   require_deployment_runbook_for_public_networks: true
 
 risk_levels:
