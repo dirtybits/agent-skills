@@ -1,7 +1,7 @@
 # ethereum-development skill configuration
 skill:
   name: ethereum-development
-  version: "2.2.0"
+  version: "2.3.0"
   category: blockchain
   license: MIT
 

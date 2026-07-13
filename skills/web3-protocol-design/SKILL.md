@@ -33,6 +33,19 @@ Use this skill when the task involves:
 7. Threat-model the design against economic, technical, governance, liquidity, oracle, and UX failures.
 8. Define launch gates: tests, simulations, audits, monitoring, limits, emergency controls, and rollout stages.
 
+## Delivery And Activation Stages
+
+Track design lock, implementation, merge, deployability, deployment and verification, client/operator configuration, feature activation, live smoke, and public launch approval as separate states. Do not use “complete,” “deployed,” or “live” interchangeably.
+
+- For a gated mechanism, specify the disabled/default state, enabling authority, dependent contracts and clients, operational inputs, monitoring, rollback, and evidence required to advance each state.
+- Treat user entry points, claim or exit paths, operator runbooks, custody and role assignments, address/config distribution, and live-flow verification as activation deliverables rather than incidental follow-up work.
+- Revalidate the candidate after prerequisite merges or deployment changes. Prior checks against an older head, base, address, or compiler artifact do not certify the resulting release.
+- On a non-production network with no live liabilities, prefer an explicitly approved clean break when it removes migration and compatibility machinery. Record the state, clients, addresses, and fixtures that the break invalidates.
+
+## Staged Trust And Governance
+
+Allow centralized adjudication or operations in an early stage only as an explicit trust boundary, not implied decentralization. Bound the authority, outcomes, economic discretion, evidence and event trail, monitoring, pause or rollback path, and transition criteria. Do not add governance, appeals, or incentives merely to make an alpha appear decentralized.
+
 ## Complex Settlement Guardrails
 
 Read [Slashing And Dispute Settlement](references/slashing-and-dispute-settlement.md) when a mechanism combines penalties, claims, rewards, reserves, deadlines, sweeps, or multi-transaction settlement.
@@ -90,6 +103,7 @@ Use this structure unless the user asks for another format:
 
 ## Trust Assumptions
 - Admin:
+- Adjudicator or resolver:
 - Oracle:
 - Bridge:
 - Keeper:
@@ -108,7 +122,10 @@ Use this structure unless the user asks for another format:
 - Adversarial:
 
 ## Launch Checklist
-- [Gate.]
+- Implementation and merge gate:
+- Deployment and verification gate:
+- Client and operator activation gate:
+- Live-smoke and public-launch gate:
 ```
 
 ## Review Checklist
@@ -118,13 +135,16 @@ Check these before calling a design ready:
 - The protocol has a clear asset custody model and no ambiguous owner of funds.
 - Every privileged action has an authority, delay, scope limit, and monitoring plan.
 - Fees, rewards, and slashing are denominated in exact units and rounding behavior is specified.
+- Design-locked economics and safety bounds are distinguished from intentionally configurable parameters and enforced by deployment and initialization checks.
 - Oracle, bridge, and keeper failures have explicit stale-data and liveness behavior.
 - User deposits, withdrawals, refunds, disputes, and cancellations have bounded failure paths.
+- Report or dispute admission has explicit standing, replay identity, filing window, anti-spam cost, and repeat-attempt behavior.
 - Enforcement, restitution, incentives, and surplus are separately specified before their ledgers are combined.
 - Maximum penalty and payout are compared with trigger cost, harmed-party loss, and penalized exposure.
 - Claim funding, shortfall, expiry, sweep, transfer failure, and upgrade/cutover behavior are explicit.
 - Incentives still work when volume is low, rewards are exhausted, liquidity is thin, or a rational actor griefs the system.
 - Upgrade and emergency controls cannot silently change user claims without a visible process.
+- Implementation, deployment, activation, and public launch status are evidenced separately.
 - Invariants are testable and include conservation of value, authorization, accounting, and replay protection.
 
 ## Output Guidance

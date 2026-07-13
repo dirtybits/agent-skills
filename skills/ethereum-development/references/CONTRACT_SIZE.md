@@ -117,10 +117,13 @@ Moving functions into a library only reduces caller runtime when the compiler em
 
 For a linked library:
 
-- record and verify the deployed library address and bytecode
-- preserve deterministic linking inputs in deployment artifacts
+- resolve every production link reference and record the fully qualified library name, deployed address, and runtime code hash
+- preserve the exact link map and compiler inputs in deployment and verification artifacts
+- rehearse the real library-to-caller-to-initialization sequence on a local chain
+- compare each deployed library's runtime code with the expected artifact and the caller's deployed runtime with the artifact produced from the final link inputs
+- verify the library and caller separately using the identical compiler and link map
 - review caller-context effects and all arguments as an authorization boundary
-- test missing, wrong, and mismatched library addresses
+- test unresolved, zero, wrong, code-less, and bytecode-mismatched library addresses
 
 ### Separate Feature Contracts
 

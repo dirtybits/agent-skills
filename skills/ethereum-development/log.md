@@ -1,5 +1,8 @@
 # Directory Update Log
 
+## 2026-07-13
+* **Update**: Added release-state and feature-gate semantics, exact signature purpose/object/replay binding, deployment-aware cache identity, linked-library code-hash verification, and current-head review provenance. Bumped to 2.3.0.
+
 ## 2026-07-11
 * **Fix**: Corrected `cast run --trace` to `cast run` (traces print by default) in SKILL.md, GUIDE.md, and PATTERNS.md.
 * **Update**: Added EIP-7702 type-4 set-code transactions and EIP-1153 transient storage guidance.

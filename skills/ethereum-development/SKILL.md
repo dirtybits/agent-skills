@@ -7,7 +7,7 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/ethereum-d
 tags: ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp", "viem", "ethers", "wagmi", "gas", "deployment"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-version: "2.2.0"
+version: "2.3.0"
 license: MIT
 updated: "2026-07"
 ---
@@ -78,6 +78,13 @@ Before making changes:
 7. Run formatters, compile, targeted tests, and broader tests appropriate to risk.
 8. For public network actions, prepare a runbook and get explicit approval before broadcasting.
 
+## Release State And Feature Gates
+
+Track these as separate claims: implemented and tested, merged on the current base, deployable under the production compiler profile, deployed and bytecode-verified, configured, activated, and live-smoked or operationally approved. Evidence for one state does not imply the next.
+
+- For gated features, record the default state, enabling authority, contract and client dependencies, activation transaction or configuration change, monitoring, and rollback path. A feature may be implementation-complete while deployment and activation remain blocked.
+- For stacked or interacting changes, define the merge and deployment dependency order. After each prerequisite merge, update the remaining candidates onto the new base and rerun affected size, ABI, storage-layout, deployment-script, and integration gates; green checks from an earlier head or base do not certify the merge result.
+
 ## Runtime Size And Architecture
 
 Treat deployed runtime bytecode as a deployability invariant, not a gas optimization. Read [Contract Size And Architecture](references/CONTRACT_SIZE.md) when a contract is expected to grow materially or approaches its target-chain limit.
@@ -124,8 +131,9 @@ Handle non-standard token behavior:
 
 - Prefer EIP-712 typed data for structured signatures.
 - Domain-separate by name, version, chain ID, and verifying contract.
-- Include nonce, deadline, signer, target contract, value/amount, and chain-specific context.
-- Consume nonces exactly once and test replay failure.
+- Bind each signature to one explicit action or purpose and every security-relevant object or payload field: method or selector, resource ID, recipient, amount, and request hash as applicable. Never reuse a generic proof-of-wallet signature across mutations.
+- Include a nonce and deadline. A timestamp or deadline only narrows the replay window; it does not prevent same-action replay. Consume the nonce atomically and exactly once, or use an equivalent replay ledger.
+- Test cross-purpose, cross-object, modified-payload, duplicate, expired, cross-chain, and cross-contract attempts.
 - Consider EIP-1271 smart contract signatures when supporting smart wallets.
 
 ### Upgradeable Contracts
@@ -235,6 +243,11 @@ await expect(contract.doThing(amount))
 
 ## Security Review Checklist
 
+### Review Provenance
+
+- Record the reviewed commit SHA and compiler or deployment artifact. Before accepting or dismissing an automated or human finding, reproduce the claimed behavior on the current head; an old line location or old-head behavior is not evidence about the current artifact.
+- After a fix, add regression coverage and rerun the relevant review against the new head. Resolve stale findings with current-code and test evidence rather than silently ignoring them.
+
 ### Authorization
 
 - Can unauthorized users reach privileged behavior through direct calls, callbacks, delegatecalls, multicalls, proxies, or initialization paths?
@@ -283,6 +296,8 @@ await expect(contract.doThing(amount))
 ## Frontend And Client Integration
 
 - Keep address maps chain-specific and explicit; never silently fall back to mainnet/testnet.
+- Where reads can originate from multiple deployments, namespace cache keys, query keys, indexed state, and deduplication keys by chain ID and deployed contract address before entity-specific fields. Do not key deployment-specific state by user or entity alone.
+- Invalidate or refetch on contract-address, proxy-implementation, ABI/version, or network changes. Test that identical entity identifiers queried through two contracts on the same chain remain independent.
 - Use typed ABIs or generated clients when available.
 - Keep internal token math in `bigint`/BigNumber base units; format only at UI boundaries.
 - Handle wallet disconnect, wrong chain, unsupported chain, pending tx, replaced tx, revert, RPC outage, and indexer lag.
@@ -305,15 +320,16 @@ Before public broadcast:
 
 1. Confirm clean git status, branch, commit, release tag, and artifacts.
 2. Confirm network name, chain ID, RPC URL, explorer URL, deployer address, deployer balance, nonce, and gas settings.
-3. Run full test suite and required fork/fuzz/invariant tests.
-4. Confirm deployed runtime is within the recorded hard and soft limits under the exact verification compiler profile.
-5. Run deployment script in dry-run/simulation mode.
-6. Record expected addresses, constructor args, initializer calldata, CREATE2 salts, proxy admin, implementation, owner, roles.
-7. Confirm secrets path or hardware wallet flow without exposing keys.
-8. Confirm multisig/timelock addresses and role transfer order.
-9. Prepare verification command and explorer API key.
-10. Prepare pause/rollback/communication plan.
-11. Get explicit user approval before broadcasting.
+3. Separate true deployment inputs from design-locked protocol constants. Do not expose approved economics or safety bounds as accidental environment knobs; enforce them in the deployment path and initializer or constructor.
+4. Run full test suite and required fork/fuzz/invariant tests.
+5. Confirm deployed runtime is within the recorded hard and soft limits under the exact verification compiler profile.
+6. Run deployment script in dry-run/simulation mode.
+7. Record expected addresses, linked-library map and code hashes when applicable, constructor args, initializer calldata, CREATE2 salts, proxy admin, implementation, owner, and roles.
+8. Confirm secrets path or hardware wallet flow without exposing keys.
+9. Confirm multisig/timelock addresses and role transfer order.
+10. Prepare verification command and explorer API key.
+11. Prepare pause/rollback/communication plan.
+12. Get explicit user approval before broadcasting.
 
 After broadcast:
 

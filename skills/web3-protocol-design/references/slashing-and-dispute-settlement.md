@@ -16,6 +16,7 @@ Use this reference for penalties, disputes, refund pools, reporter or keeper rew
 - [Start With The Minimum Mechanism](#start-with-the-minimum-mechanism)
 - [Separate The Economic Ledgers](#separate-the-economic-ledgers)
 - [Test Trigger And Penalty Proportionality](#test-trigger-and-penalty-proportionality)
+- [Control Report Admission](#control-report-admission)
 - [Define The Claim Model](#define-the-claim-model)
 - [Keep A Complexity Ledger](#keep-a-complexity-ledger)
 - [Design Staged Settlement](#design-staged-settlement)
@@ -93,6 +94,19 @@ Threat-model at least:
 - a treasury or reserve windfall after claimant caps
 
 A broad penalty may be an intentional reputational deterrent. Record that choice explicitly; do not let it emerge accidentally from a restitution formula.
+
+## Control Report Admission
+
+Define who has standing to trigger the mechanism and bind each report to one permanent incident identifier, such as a purchase, position, epoch, transaction, or signed claim. Specify:
+
+- eligibility proof and the relationship between the reporter and alleged harm
+- one-report, one-resolution, and replay behavior for the same incident
+- bond, fee, rate limit, or other anti-spam cost and who receives it after each outcome
+- filing window and the event that starts it
+- cooldown or repeat-attempt rule after rejection, dismissal, expiry, or withdrawal
+- aggregate limits when one actor can create many distinct but related reports
+
+Do not rely on a bond alone when a cheap eligible action can reach broad collateral. Avoid report types that only write a negative reputation signal unless their protocol effect, abuse controls, correction path, and intended value are explicit.
 
 ## Define The Claim Model
 
@@ -205,6 +219,7 @@ Preserve approved invariants and semantics, not implementation machinery. Valida
 Cover:
 
 - malformed, unauthorized, stale, and replayed triggers
+- ineligible reporters, duplicate incident identifiers, mass-report spam, and cooldown bypass
 - configuration changes after trigger but before settlement
 - work-set entry, exit, rotation, deletion, and duplication while parked
 - empty, partial, duplicate, out-of-order, and final processing pages
@@ -225,6 +240,7 @@ Before implementation:
 - [ ] Core safety mechanism and non-goals are explicit.
 - [ ] Four economic ledgers are specified separately.
 - [ ] Trigger, harm, exposure, maximum penalty, payout, and capturable excess are compared.
+- [ ] Report admission fixes standing, incident identity, replay, filing window, anti-spam cost, and repeat-attempt behavior.
 - [ ] Claim cohort, allocation, funding, shortfall, deadline, and residual ownership are fixed.
 - [ ] Every role, reserve, reward, timeout, sweep, and state is justified.
 - [ ] Staged settlement has snapshot, freeze, replay, completeness, and liveness rules.
