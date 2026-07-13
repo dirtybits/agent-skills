@@ -40,6 +40,8 @@ npx skills add <owner/repo> --skill <skill-name>
 
 See [AGENTS.md](AGENTS.md) for installation guidance, source-review expectations, and rules for bringing third-party skills into this repository.
 
+See [SKILLS_ORGANIZATION.md](SKILLS_ORGANIZATION.md) to set up this repository as a shared, Git-managed skill source for Codex, Claude, and Cursor on another machine.
+
 ## Validate
 
 ```bash
