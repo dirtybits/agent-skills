@@ -21,6 +21,7 @@ REQUIRED_FILES = [
     "references/GUIDE.md",
     "references/PATTERNS.md",
     "references/CONTRACT_SIZE.md",
+    "references/OPERATIONS.md",
     "scripts/check_runtime_size.py",
 ]
 REQUIRED_PHRASES = [

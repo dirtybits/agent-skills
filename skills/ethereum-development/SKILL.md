@@ -7,7 +7,7 @@ resource: "https://github.com/dirtybits/agent-skills/tree/main/skills/ethereum-d
 tags: ["ethereum", "solidity", "evm", "smart-contracts", "foundry", "hardhat", "security", "dapp", "viem", "ethers", "wagmi", "gas", "deployment"]
 timestamp: "2026-06-22T19:13:38Z"
 okf_version: "0.1"
-version: "2.3.0"
+version: "2.4.0"
 license: MIT
 updated: "2026-07"
 ---
@@ -166,6 +166,7 @@ Handle non-standard token behavior:
 Operational checks:
 
 - Confirm nonce with pending state when replacing or submitting multiple txs.
+- Prefer an explicit keystore file, verify its address, and pass its secret through a real permission-restricted password file rather than a clipboard, command-line password, or `/dev/fd` path.
 - Set `maxFeePerGas` high enough to survive base fee movement; tip should reflect urgency.
 - For replacement, increase fee enough for the client/network replacement rule.
 - Inspect receipts for `status`, logs, gas used, effective gas price, and contract address.
@@ -179,9 +180,16 @@ Operational checks:
 - `out of gas`: estimate plus trace; distinguish actual gas shortage from infinite/reverting path.
 - `insufficient funds`: include value + gas limit * max fee, not only transfer amount.
 
+## Operational Key, RPC, And Cross-Chain Discipline
+
+Read [EVM Operations And Custody](references/OPERATIONS.md) before preparing a public-network deployment, Safe transaction, deterministic multi-chain deployment, finalized event reader, or off-chain service that feeds an indexer, relayer, or executor.
+
+- A Safe is a contract, not a private key. Keep deployer, owner, service signer, relayer, and executor roles distinct; possession of a keystore is not approval to grant authority, and exportable test keys are not production custody.
+- Authenticated RPCs are reliability tools, not secrecy boundaries. Verify required RPC capabilities, nonces and deterministic addresses, directional cross-chain configuration, finalized block identity, and producer/indexer/executor stages independently.
+
 ## Tooling Recipes
 
-Full command recipes live in [references/GUIDE.md](references/GUIDE.md): Foundry build/test/trace/storage commands, fork testing, deployment rehearsal, Hardhat equivalents, and viem client examples (storage slot reads, EIP-1559 sends). Follow the repo's package manager and lockfile: npm, pnpm, yarn, or bun.
+Full command recipes live in [references/GUIDE.md](references/GUIDE.md): Foundry build/test/trace/storage commands, fork testing, deployment rehearsal, Hardhat equivalents, and viem client examples (storage slot reads, EIP-1559 sends). Operational signing, RPC, finality, deterministic deployment, and cross-chain checkpoints live in [references/OPERATIONS.md](references/OPERATIONS.md). Follow the repo's package manager and lockfile: npm, pnpm, yarn, or bun.
 
 ## Gas Optimization Checklist
 
@@ -319,7 +327,7 @@ await expect(contract.doThing(amount))
 Before public broadcast:
 
 1. Confirm clean git status, branch, commit, release tag, and artifacts.
-2. Confirm network name, chain ID, RPC URL, explorer URL, deployer address, deployer balance, nonce, and gas settings.
+2. Confirm network name, chain ID, RPC URL, explorer URL, deployer address, deployer balance, latest and pending nonce, expected deterministic addresses, and gas settings.
 3. Separate true deployment inputs from design-locked protocol constants. Do not expose approved economics or safety bounds as accidental environment knobs; enforce them in the deployment path and initializer or constructor.
 4. Run full test suite and required fork/fuzz/invariant tests.
 5. Confirm deployed runtime is within the recorded hard and soft limits under the exact verification compiler profile.
@@ -333,7 +341,7 @@ Before public broadcast:
 
 After broadcast:
 
-1. Save tx hashes, deployed addresses, block numbers, and verification links.
+1. Save tx hashes, deployed addresses, block numbers, verification links, and independent receipt/code-hash checks before continuing the nonce sequence.
 2. Verify contracts on explorer.
 3. Check roles, ownership, proxy implementation, initialized state, parameters, and balances.
 4. Run read-only smoke tests against deployed contracts.

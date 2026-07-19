@@ -77,7 +77,7 @@ forge snapshot
 forge inspect <ContractName> storage-layout
 anvil --chain-id 31337
 cast call <address> "fn()" --rpc-url "$RPC_URL"
-cast send <address> "fn(uint256)" 1 --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
+cast send <address> "fn(uint256)" 1 --rpc-url "$RPC_URL" --keystore "$KEYSTORE" --password-file "$PASSWORD_FILE"
 cast storage <address> <slot> --rpc-url "$RPC_URL"
 cast sig "fn(address,uint256)"
 cast code <address> --rpc-url "$RPC_URL"
@@ -159,8 +159,10 @@ const hash = await wallet.sendTransaction({
 - Git commit
 - Network and chain ID
 - RPC provider used
+- RPC capabilities required and verified, including the finality tag if applicable
 - Deployer address
 - Starting and ending nonce
+- Expected deterministic addresses, when applicable
 - Deployed addresses
 - Constructor args
 - Initializer calldata

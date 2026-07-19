@@ -1,5 +1,8 @@
 # Directory Update Log
 
+## 2026-07-19
+* **Update**: Added operational custody, explicit Foundry keystore/password-file handling, RPC capability and independent-verification gates, deterministic multi-chain deployment checkpoints, finality-aware readers, directional cross-chain configuration checks, and producer/indexer/executor state separation. Replaced the raw-private-key send example and bumped to 2.4.0.
+
 ## 2026-07-13
 * **Update**: Added release-state and feature-gate semantics, exact signature purpose/object/replay binding, deployment-aware cache identity, linked-library code-hash verification, and current-head review provenance. Bumped to 2.3.0.
 
