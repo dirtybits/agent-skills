@@ -199,6 +199,26 @@
       "author": "Hermes Agent + dirtybits"
     },
     {
+      "name": "simplified-technical-english",
+      "path": "skills/simplified-technical-english",
+      "origin": "authored",
+      "license": "MIT",
+      "tags": [
+        "documentation",
+        "technical-writing",
+        "naming",
+        "git",
+        "workflow"
+      ],
+      "publish_decision": "candidate",
+      "provenance": {
+        "summary": "Original dirtybits-authored guidance informed by the public Simplified Technical English overview.",
+        "attribution_notes": [
+          "Uses general clarity principles and original examples; does not reproduce or claim formal compliance with ASD-STE100."
+        ]
+      }
+    },
+    {
       "name": "skills-organization",
       "path": "skills/skills-organization",
       "origin": "authored",
