@@ -1,0 +1,4 @@
+interface:
+  display_name: "Simplified Technical English"
+  short_description: "Write clear labels, instructions, and branch names"
+  default_prompt: "Use $simplified-technical-english to revise this technical text for clear labels, short instructions, and explicit branch names."
