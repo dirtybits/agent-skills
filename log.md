@@ -12,3 +12,6 @@
 ## 2026-06-30
 
 - Added `npm-publish`, a release workflow skill for npm workspace publishing, dist-tags, 2FA, tarball smoke tests, security-guarded verification, and common npm publish/install failure modes.
+## 2026-09-16
+
+- Added `x-integration`, a Playwright-based X (Twitter) posting skill adapted from the MIT-licensed nanoclaw x-integration plugin (nanocoai/nanoclaw-skills): post, like, reply, retweet, and quote via the user's real Chrome session, with multi-account isolation and headful setup.
