@@ -305,6 +305,23 @@
         "repo_skill_id": "71a463dc-4071-452d-880f-f00738e0bee8",
         "url": "https://agentvouch.xyz/skills/wallet-asuavudg/web3-protocol-design"
       }
+    },
+    {
+      "name": "x-integration",
+      "path": "skills/x-integration",
+      "origin": "local-hermes-agent-dirtybits-created",
+      "license": "MIT",
+      "tags": [
+        "twitter",
+        "x",
+        "social-media",
+        "playwright",
+        "automation"
+      ],
+      "publish_decision": "candidate-with-attribution",
+      "provenance": {
+        "summary": "Hermes Agent + dirtybits adaptation of the MIT-licensed nanoclaw x-integration plugin (nanocoai/nanoclaw-skills, plugins/nanoclaw-skills/skills/x-integration) for standalone agent environments. Scripts and lib copied verbatim from upstream; SKILL.md rewritten as a platform-neutral OKF skill package."
+      }
     }
   ]
 }
